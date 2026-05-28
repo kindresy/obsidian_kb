@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude Code (environment-specific: settings, agent definitions, sessions)
+.claude/
+
+# Claudian Obsidian plugin (user sessions & settings)
+.claudian/
+
+# Obsidian workspace layout (user-specific, auto-generated)
+.obsidian/workspace.json
+
+# LLM Wiki vector index (rebuildable via build-index.py)
+LLM_Wiki/.vector_index/
+
+# Python cache
+__pycache__/
+*.pyc

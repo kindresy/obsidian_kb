@@ -1,0 +1,5 @@
+.DS_Store
+.vector_index/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
