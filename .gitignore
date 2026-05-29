@@ -2,16 +2,26 @@
 .DS_Store
 Thumbs.db
 
+# Temp files
+*.base
+*~
+
 # Claude Code (environment-specific: settings, agent definitions, sessions)
 .claude/
 
 # Claudian Obsidian plugin (user sessions & settings)
 .claudian/
 
-# Obsidian user-specific config (differs per machine/user)
+# Obsidian workspace & graph layout (user-specific, auto-generated)
 .obsidian/workspace.json
 .obsidian/graph.json
-.obsidian/plugins/*/data.json
+
+# Obsidian plugin user config (differs per machine/user)
+.obsidian/plugins/obsidian-git/data.json
+.obsidian/plugins/realclaudian/data.json
+
+# Obsidian themes (reinstallable via community themes browser)
+.obsidian/themes/*
 
 # Obsidian plugin binaries (reinstallable via community-plugins.json)
 .obsidian/plugins/*/main.js

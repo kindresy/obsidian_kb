@@ -1,0 +1,14 @@
+{
+  "readOnlyDefault": false,
+  "strictReadOnly": false,
+  "readOnlyFolders": [],
+  "strictReadOnlyFolders": [
+    "LLM_Wiki/raw"
+  ],
+  "readOnlyPatterns": [],
+  "strictReadOnlyPatterns": [],
+  "readOnlyList": [],
+  "strictReadOnlyList": [],
+  "detectConflict": true,
+  "debugLogging": false
+}

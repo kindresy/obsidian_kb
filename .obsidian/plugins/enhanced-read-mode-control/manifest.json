@@ -1,0 +1,11 @@
+{
+  "id": "enhanced-read-mode-control",
+  "name": "Enhanced Read Mode Control",
+  "version": "1.1.2",
+  "minAppVersion": "1.5.0",
+  "description": "Take full control of note view modes. Force specific folders (e.g. raw/) into strict read-only mode to prevent accidental edits.",
+  "author": "mathe00",
+  "authorUrl": "https://github.com/mathe00",
+  "isDesktopOnly": false,
+  "repo": "mathe00/obsidian-enhanced-read-mode-control"
+}
