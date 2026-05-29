@@ -1,14 +1,15 @@
 {
-  "readOnlyDefault": false,
-  "strictReadOnly": false,
-  "readOnlyFolders": [],
+  "defaultReadOnlyFolders": [],
+  "defaultReadOnlyFiles": [],
   "strictReadOnlyFolders": [
     "LLM_Wiki/raw"
   ],
-  "readOnlyPatterns": [],
-  "strictReadOnlyPatterns": [],
-  "readOnlyList": [],
-  "strictReadOnlyList": [],
+  "strictReadOnlyFiles": [],
+  "defaultReadOnlyRegex": [],
+  "strictReadOnlyRegex": [],
+  "enableRegex": false,
+  "forceEditModeOnUnmanagedNotes": false,
+  "notifications": true,
   "detectConflict": true,
   "debugLogging": false
 }
