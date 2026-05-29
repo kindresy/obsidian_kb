@@ -1,6 +1,6 @@
 [
-  "enhanced-read-mode-control",
   "realclaudian",
   "obsidian-git",
-  "show-diff"
+  "show-diff",
+  "force-read-mode"
 ]
