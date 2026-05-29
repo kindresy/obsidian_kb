@@ -31,3 +31,12 @@ Promoted query answer to wiki/pcie-switch-firmware-storage.md as a first-class c
 
 ## [2026-05-28] query | pcie-physical-vs-transaction-layer
 Answered question. Referenced 4 pages. Filed to queries/pcie-physical-vs-transaction-layer.md.
+
+## [2026-05-29] walkthrough | Edge PCIe Driver
+Walkthrough of pcie driver (x6000-v0.4.0): created architecture page ([[edge-pcie-driver]]) and module page ([[edge-pcie-core]]), backlinked to 8 existing concept pages including [[msi-msi-x]], [[linux-pci-subsystem]], [[pci-interrupt-mechanism]].
+
+## [2026-05-29] query | how-to-enable-msi-in-linux
+Cross-code-and-theory query: "如何在 Linux 中启用 MSI 中断" — synthesized answer citing [[msi-msi-x]], [[linux-pci-subsystem]], [[pci-interrupt-mechanism]], [[edge-pcie-core]]. Filed to wiki/queries/how-to-enable-msi-in-linux.md.
+
+## [2026-05-29] lint | full wiki audit
+Ran deterministic lint script + manual checks. Fixed 1 issue: pcie-switch-firmware-storage.md — renamed section to `## Counter-Arguments and Gaps`. All 26 pages clean: no dead links, no orphans, no contradictions, no stale pages, no index drift. Report: outputs/reports/2026-05-29-lint.md.

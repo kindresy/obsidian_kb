@@ -70,3 +70,8 @@ PCI Express（PCIe）是替代传统 PCI 总线的高速串行计算机扩展总
 ## Counter-Arguments and Gaps
 
 ...
+
+## Code References
+
+- [[edge-pcie-core]] — edge-driver/edge.h — BAR space layout, Address Translation (AT) register definitions for inbound/outbound region remapping
+- [[edge-pcie-driver]] — architecture overview of PCIe endpoint device

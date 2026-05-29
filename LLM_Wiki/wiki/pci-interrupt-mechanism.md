@@ -50,3 +50,8 @@ PCI 总线在 2.2 规范中引入了 MSI（Message Signaled Interrupt）作为 I
 
 - INTx 中断在线路共享时无法区分中断来源，驱动需要逐个设备查询中断状态寄存器
 - 中断同步问题仅靠软件解决增加了驱动复杂度
+
+## Code References
+
+- [[edge-pcie-core]] — edge-driver/edge.c:4999 — INTx fallback when MSI/MSI-X unavailable (IRQF_SHARED for exception events)
+- [[edge-pcie-core]] — edge-driver/edge.c:4903 — MSI vs MSI-X vs INTx IRQ setup hierarchy

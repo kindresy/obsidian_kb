@@ -119,7 +119,7 @@ def collect_all_chunks() -> tuple[list[dict], int]:
     all_chunks = []
     total_bytes = 0
 
-    md_files = sorted(WIKI_DIR.glob("*.md"))
+    md_files = sorted(WIKI_DIR.glob("**/*.md"))
     for md_path in md_files:
         if md_path.name in EXCLUDE_FILES:
             continue

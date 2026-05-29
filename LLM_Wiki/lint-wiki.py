@@ -65,11 +65,19 @@ def lint(wiki_dir):
         if slug in skip:
             continue
         filepath = os.path.join(wiki_dir, rel)
-        if not check_frontmatter_section(filepath, "Counter-Arguments and Gaps"):
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = f.read()
-            if "type: concept" in content:
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+        if "type: concept" in content:
+            if "## Counter-Arguments and Gaps" not in content:
                 issues.append(f"MISSING_SECTION: {rel} lacks 'Counter-Arguments and Gaps'")
+        if "type: module" in content:
+            for section in ["Responsibilities", "Key Interfaces", "Dependencies"]:
+                if f"## {section}" not in content:
+                    issues.append(f"MISSING_SECTION: {rel} (module) lacks '## {section}'")
+        if "type: architecture" in content:
+            for section in ["Directory Map", "Module Graph"]:
+                if f"## {section}" not in content:
+                    issues.append(f"MISSING_SECTION: {rel} (architecture) lacks '## {section}'")
 
     if not issues:
         print("OK: No issues found")

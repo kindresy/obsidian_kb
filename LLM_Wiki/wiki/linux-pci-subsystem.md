@@ -81,3 +81,8 @@ x86 支持三种：
 ## Counter-Arguments and Gaps
 
 ...
+
+## Code References
+
+- [[edge-pcie-core]] — edge-driver/edge.c — Linux PCI driver model implementation (probe/remove, pci_enable_device, pci_set_master)
+- [[edge-pcie-driver]] — architecture overview of the Edge PCIe driver as a Linux kernel module

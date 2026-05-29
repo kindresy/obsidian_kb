@@ -8,8 +8,10 @@ Thumbs.db
 # Claudian Obsidian plugin (user sessions & settings)
 .claudian/
 
-# Obsidian workspace layout (user-specific, auto-generated)
+# Obsidian user-specific config (differs per machine/user)
 .obsidian/workspace.json
+.obsidian/graph.json
+.obsidian/plugins/*/data.json
 
 # LLM Wiki vector index (rebuildable via build-index.py)
 LLM_Wiki/.vector_index/
@@ -17,3 +19,13 @@ LLM_Wiki/.vector_index/
 # Python cache
 __pycache__/
 *.pyc
+
+# Kernel module build artifacts (rebuildable from source)
+raw/code/**/*.o
+raw/code/**/*.ko
+raw/code/**/*.mod
+raw/code/**/*.mod.c
+raw/code/**/*.cmd
+raw/code/**/Module.symvers
+raw/code/**/modules.order
+raw/code/**/.tmp_versions/

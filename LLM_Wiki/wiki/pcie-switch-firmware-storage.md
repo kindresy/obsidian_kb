@@ -42,6 +42,6 @@ PCIe Switch 的固件（Firmware）通常存储在以下位置：
 - [[pci-express]] — PCIe 架构组件（含 Switch）
 - [[capric-card]] — PCIe 端点设备的实际设计实现
 
-## 未覆盖的内容
+## Counter-Arguments and Gaps
 
 本书《[[pci-express-体系结构导读]]》主要关注 PCIe 体系结构的软件视角（配置空间、事务层协议、枚举流程等），对 Switch 固件的具体存储介质和加载流程着墨不多。上述信息结合了本书中关于设备初始化机制的描述与业界的通用实现。

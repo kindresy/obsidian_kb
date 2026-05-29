@@ -59,3 +59,8 @@ status: active
 ## Counter-Arguments and Gaps
 
 ...
+
+## Code References
+
+- [[edge-pcie-core]] — edge-driver/edge.c — ACS redirection disable for P2P transfers; SR-IOV interrupt register handling
+- [[edge-pcie-core]] — edge-driver/edge.h — SRIOV interrupt status/mask register definitions

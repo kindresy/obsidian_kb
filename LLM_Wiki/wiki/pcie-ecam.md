@@ -70,3 +70,8 @@ Linux 支持三种配置访问方法：
 
 - ECAM 的 256MB 空间浪费是实际系统中长期存在的问题
 - ARM 架构的 ECAM 实现在 PCIe 控制器中而非 CPU 内部，集成方式不同
+
+## Code References
+
+- [[edge-pcie-core]] — edge-driver/edge.c — PCI config space access via `pci_read_config_dword` for MSI capability registers
+- [[edge-pcie-core]] — edge-driver/edge.h — Register definitions for PCIe controller config space (PCIE_CONTROLLER_X8_BASE)

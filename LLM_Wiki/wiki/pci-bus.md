@@ -91,3 +91,8 @@ C/BE[3:0]# 命令类型：
 ## Counter-Arguments and Gaps
 
 ...
+
+## Code References
+
+- [[edge-pcie-core]] — edge-driver/edge.c — DMA operations: bus mastering, 64-bit DMA mask, scatter-gather DMA transfers
+- [[edge-pcie-core]] — edge-driver/edge.c — `pci_set_master()` and `dma_set_mask()` in probe flow

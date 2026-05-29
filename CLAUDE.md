@@ -25,6 +25,7 @@ When performing wiki operations:
 | **Query** | Search the wiki, synthesize answer with `[[wikilink]]` citations. Always file to `wiki/queries/`. |
 | **Lint** | Audit for dead links, orphans, contradictions, index drift. |
 | **Promote** | Move a filed query answer from `wiki/queries/` to `wiki/` as a first-class concept page. |
+| **Walkthrough** | Analyze a code repository, create `module` and `architecture` pages, and link to existing concepts. |
 
 ### Key Rules
 - **`raw/` is sacred** — never edit files in `raw/`. LLM reads but never writes there.
@@ -34,7 +35,7 @@ When performing wiki operations:
 - **Flag contradictions** with `> [!WARNING] Contradiction with [[other-page]]`.
 
 ### Available Skills
-- **llm-wiki** (`.claude/skills/llm-wiki/SKILL.md`) — wiki 核心操作：ingest / compile / query / lint
+- **llm-wiki** (`.claude/skills/llm-wiki/SKILL.md`) — wiki 核心操作：ingest / compile / query / lint / walkthrough
 - **file-prep** (`.claude/skills/file-prep/SKILL.md`) — 大文件预处理：图片迁移、路径重写、文件切片
   - 自动在文件 >50KB 或含嵌入图片时启用
   - 命令格式: `prep <文件路径> [--source-name <名称>]`

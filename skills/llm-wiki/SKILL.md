@@ -4,7 +4,7 @@ description: >-
   LLM Wiki — persistent, compounding knowledge base inside Obsidian.
   Use when the user says "/llm-wiki:wiki", "wiki init", "wiki ingest",
   "wiki query", "wiki lint", or asks about managing a knowledge base wiki.
-argument-hint: init <name> | ingest <path|url> | compile [<path>] | query <question> | lint | remove <name>
+argument-hint: init <name> | ingest <path|url> | compile [<path>] | query <question> | lint | remove <name> | walkthrough <path|url>
 ---
 
 # LLM Wiki
@@ -61,6 +61,45 @@ Create a new wiki scaffold under the Obsidian vault.
 6. Write `LLM_Wiki/<name>/.gitignore`.
 
 7. Print setup completion message.
+
+---
+
+## `walkthrough <path|url>`
+
+Analyze a code repository and create `module` and `architecture` wiki pages, linked to existing concepts.
+
+### Steps
+
+1. **Detect active wiki.** Read `CLAUDE.md` for schema.
+
+2. **Phase 0 — Acquire code:**
+   - If URL: `git clone --depth 1 <url> LLM_Wiki/raw/code/<repo-name>/`
+   - If local path: copy to `LLM_Wiki/raw/code/<repo-name>/`
+   - Write `SUMMARY.md` with metadata.
+
+3. **Phase 1 — Explore:** Build directory map, detect language/build system, find entry points and module boundaries. Identify 5-15 key files (token budget: ~10-15 files). Do NOT read all files.
+
+4. **Phase 2 — Understand:** Read identified key files. Extract exported functions, data structures, config options, dependencies, protocol references. Group by module (token budget: ~15-25 files).
+
+5. **Phase 3 — Extract & Link:**
+   - Create/update `wiki/modules/<name>.md` for each module using the `module` template.
+   - Create/update `wiki/architecture/<repo-name>.md` using the `architecture` template.
+   - Run `python3 LLM_Wiki/search-index.py "<module description>" --top-k 3` to find semantically related existing concept pages.
+   - Add `[[wikilinks]]` to dependencies sections.
+
+6. **Phase 4 — Backlink:** For each concept page linked from a module, add or update its `## Code References` section with `[[module-name]]` entries.
+
+7. **Phase 5 — Update Infrastructure:**
+   - Update `wiki/index.md` with new `## Code / <repo-name>` domain entries
+   - Rebuild vector index: `python3 LLM_Wiki/build-index.py`
+   - Append to `log.md`
+
+### Token Budget
+| Repo Size | Files Read |
+|-----------|-----------|
+| <100 files | 15-25 total |
+| 100-500 | 25-40 total |
+| 500+ | 35-50 total (architecture only + drill-down offer) |
 
 ---
 

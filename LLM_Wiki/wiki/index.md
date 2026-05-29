@@ -26,3 +26,7 @@ Last updated: 2026-05-28
 - [[pci-virtualization]] — PCI 虚拟化技术（SR-IOV/IOMMU） (2026-05-28)
 - [[mesif-protocol]] — MESIF 缓存一致性协议 (2026-05-28)
 - [[powerpc]] — PowerPC 处理器架构 (2026-05-28)
+
+## Code / Edge PCIe Driver
+- [[edge-pcie-driver]] — Edge PCIe Driver 架构总览 (2026-05-29)
+- [[edge-pcie-core]] — Edge PCIe 核心模块（DMA/MSI-X/字符设备） (2026-05-29)

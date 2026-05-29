@@ -67,3 +67,7 @@ x86 特有的地址转换：当物理内存 >4GB 时，TOLUD-4GB 的"PCI 空洞"
 ## Counter-Arguments and Gaps
 
 ...
+
+## Code References
+
+- [[edge-pcie-driver]] — edge-driver — PCIe endpoint device under Root Complex; platform settings via `pcie_bus_configure_settings`
