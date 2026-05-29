@@ -63,6 +63,7 @@ x86 特有的地址转换：当物理内存 >4GB 时，TOLUD-4GB 的"PCI 空洞"
 - [[pci-express]]
 - [[pci-bridge]]
 - [[pci-virtualization]]
+- [[iommu]] — IOMMU 是 Root Complex 的一部分，处理设备 DMA 和中断翻译
 
 ## Counter-Arguments and Gaps
 

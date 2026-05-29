@@ -1,6 +1,6 @@
 # LLM Wiki Index
 
-Last updated: 2026-05-28
+Last updated: 2026-05-29
 
 ## Computer Architecture / PCI / PCIe
 - [[pci-express-体系结构导读]] — 《PCI Express 体系结构导读》全书摘要 (2026-05-28)
@@ -26,6 +26,15 @@ Last updated: 2026-05-28
 - [[pci-virtualization]] — PCI 虚拟化技术（SR-IOV/IOMMU） (2026-05-28)
 - [[mesif-protocol]] — MESIF 缓存一致性协议 (2026-05-28)
 - [[powerpc]] — PowerPC 处理器架构 (2026-05-28)
+
+## Computer Architecture / IOMMU / Virtualization
+- [[iommu]] — IO Memory Management Unit 原理与实现 (2026-05-29)
+- [[interrupt-remapping]] — 中断重映射机制（IOMMU 核心功能） (2026-05-29)
+- [[iommu-tutorial-asplos-2016]] — ASPLOS 2016 IOMMU 教程源 (2026-05-29)
+- [[andy-kegel]] — AMD IOMMU 架构师 (2026-05-29)
+- [[paul-blinzer]] — Intel VT-d 架构师 (2026-05-29)
+- [[arka-basu]] — AMD IOMMU 架构师 (2026-05-29)
+- [[maggie-chan]] — AMD IOMMU 架构师 (2026-05-29)
 
 ## Code / Edge PCIe Driver
 - [[edge-pcie-driver]] — Edge PCIe Driver 架构总览 (2026-05-29)

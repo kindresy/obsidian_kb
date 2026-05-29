@@ -54,3 +54,9 @@ ATS（Address Translation Services）是 PCIe 虚拟化核心技术，允许 PCI
 
 - ATS 需要设备和 IOMMU 双方支持，实际部署有限
 - ATC 一致性管理复杂，地址切换时开销较大
+
+## See Also
+
+- [[iommu]] — IOMMU 是 ATS 的服务端，提供地址翻译和页表管理
+- [[pci-virtualization]] — PCI 虚拟化技术中 ATS 的集成
+- [[iommu-tutorial-asplos-2016]] — IOMMU 教程中 ATS/PRI 部分

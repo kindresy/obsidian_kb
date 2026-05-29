@@ -40,3 +40,9 @@ Cross-code-and-theory query: "如何在 Linux 中启用 MSI 中断" — synthesi
 
 ## [2026-05-29] lint | full wiki audit
 Ran deterministic lint script + manual checks. Fixed 1 issue: pcie-switch-firmware-storage.md — renamed section to `## Counter-Arguments and Gaps`. All 26 pages clean: no dead links, no orphans, no contradictions, no stale pages, no index drift. Report: outputs/reports/2026-05-29-lint.md.
+
+## [2026-05-29] ingest | IOMMU Tutorial @ ASPLOS 2016
+Ingested IOMMU tutorial paper (PDF) from raw/articles/iommu/IOMMU_TUTORIAL_ASPLOS_2016.pdf — Virtualizing IO Through the IOMMU by Kegel, Blinzer, Basu, Chan. Saved to raw/articles/2026-05-29-iommu-tutorial-asplos-2016.md.
+
+## [2026-05-29] compile | 1 source → 8 pages
+Compiled IOMMU Tutorial @ ASPLOS 2016. Created/updated 8 pages: source-summary (iommu-tutorial-asplos-2016), 2 new concept pages (iommu, interrupt-remapping), 4 person pages (andy-kegel, paul-blinzer, arka-basu, maggie-chan), updated 3 existing pages (pci-virtualization, pcie-ats, root-complex).

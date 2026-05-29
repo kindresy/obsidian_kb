@@ -15,6 +15,23 @@ status: active
 - 类似 MMU 但用于设备地址：PCI 总线地址 → HPA（主机物理地址）
 - I/O 页表 + IOTLB 作为缓存
 - 域隔离：不同域的 PCI 设备可以使用相同 PCI 总线地址访问不同物理内存区域
+- 三大核心功能：DMA 重映射、内存保护、中断重映射（参见 [[iommu]]）
+- 与 PCIe ATS/PRI 协议协作，支持设备端地址翻译缓存和缺页请求
+
+### 中断重映射（Interrupt Remapping）
+- IOMMU 拦截设备 MSI/MSI-X 中断消息，重映射到目标 vCPU
+- Posted Interrupts：中断直接投递到 Guest 的虚拟 APIC，无需 VMM 介入
+- 解决 Guest OS 迁移后的中断路由更新问题
+- 消除 VMM 处理中断时 5-10K cycles 的额外开销
+
+### IOMMU 地址翻译流程
+- Device Table：每个 PCIe 设备（由 DevID 标识）映射到一个 Domain
+- 第一级翻译（如果启用）：GVA → GPA（Guest 管理）
+- 第二级翻译：GPA → SPA（VMM/IOMMU 管理）
+- IOTLB 缓存翻译结果，ATS 协议可将翻译缓存到设备端 ATC
+
+### IOMMU 技术家族
+- [[iommu]] 页面详述了 AMD IOMMU、Intel VT-d、ARM SMMU、IBM CAPI 四种实现
 
 ### Intel VT-d
 - Root Entry Table（256 条，每 PCI 总线一条）+ Context Entry Table（256 条，每 Function 一条）
@@ -55,6 +72,9 @@ status: active
 - [[root-complex]]
 - [[pcie-ats]]
 - [[host-bridge]]
+- [[iommu]] — IOMMU 详细原理
+- [[interrupt-remapping]] — 中断重映射机制
+- [[iommu-tutorial-asplos-2016]] — ASPLOS 2016 IOMMU 教程
 
 ## Counter-Arguments and Gaps
 
