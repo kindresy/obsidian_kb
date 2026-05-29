@@ -87,9 +87,28 @@ source-repo: <repo-name>
   `## Key Concepts Touched` with `[[wikilinks]]` to existing concept pages.
 
 ## Naming Conventions
-- All filenames: `lowercase-kebab-case.md`
-- Wikilinks: `[[filename-without-extension]]`
-- Never use standard markdown links for internal links
+
+### Filenames
+- All filenames: `lowercase-kebab-case.md` — English only, no Chinese, no spaces
+- Exception: deliberately kept short, stable, and script-friendly
+- Examples: `msi-msi-x.md` ✓, `pcie-switch-firmware-storage.md` ✓, `pci-express-体系结构导读.md` ← existing exception
+
+### Titles
+- Can be Chinese for readability: `# MSI/MSI-X 中断机制`
+- Keep consistent with the page's core topic
+
+### Body Language
+- Chinese as primary language
+- English terms retained as-is (e.g., "MSI/MSI-X", "BAR", "TLP")
+- No translation of standard technical terms
+
+### Wikilinks
+- Always use the file slug (without `.md`): `[[msi-msi-x]]`
+- Never use Chinese title text as the link target: `[[MSI/MSI-X 中断机制]]` ✗
+- For display readability, use the pipe alias syntax:
+  - `[[msi-msi-x|MSI/MSI-X 中断机制]]` — renders as "MSI/MSI-X 中断机制"
+  - `[[edge-pcie-core|Edge PCIe 核心模块]]` — renders as "Edge PCIe 核心模块"
+- Never use standard markdown links `[text](url)` for internal references
 
 ## Log Format
 Append to `log.md` after every operation. Format:
@@ -207,11 +226,20 @@ After completing a walkthrough, offer: "Walkthrough complete. Analyze a specific
 7. Append to `log.md` (both query and optional promote events)
 
 ## Lint Rules
-Scan all pages in `wiki/` and report:
-- Contradictions between pages
-- Orphan pages (no inbound `[[links]]`)
-- Pages with `status: stale` older than 90 days
-- Missing Counter-Arguments and Gaps sections
-- Index entries pointing to missing files
-- Run the deterministic lint script: `python3 lint-wiki.py wiki/`
+Run `python3 LLM_Wiki/lint-wiki.py LLM_Wiki/wiki/` (deterministic script) then resolve all issues. The script checks:
+
+| # | Check | What it flags |
+|---|-------|-------------|
+| 1 | **Dead links** | `[[wikilinks]]` pointing to nonexistent files |
+| 2 | **Orphan pages** | Pages in `wiki/` (except queries/) with no inbound `[[links]]` |
+| 3 | **index.md link integrity** | `[[links]]` in `index.md` that have no matching file on disk |
+| 4 | **Frontmatter required** | Non-query pages missing YAML `---` frontmatter block |
+| 5 | **`type:` validation** | `type:` not in allowed set: `concept`, `person`, `source-summary`, `query-output`, `module`, `architecture` |
+| 6 | **`date:` validation** | `date:` missing or not in `YYYY-MM-DD` format |
+| 7 | **Missing sections** | Concept pages lack `## Counter-Arguments and Gaps`; module pages lack `## Responsibilities`, `## Key Interfaces`, `## Dependencies`; architecture pages lack `## Directory Map`, `## Module Graph` |
+| 8 | **Query `question:` field** | Files in `wiki/queries/` missing the `question:` frontmatter field |
+| 9 | **Module `source-path:` field** | Pages with `type: module` missing the `source-path:` frontmatter field |
+| 10 | **Architecture → module links** | Pages with `type: architecture` that don't link to any page in `modules/` via `[[wikilink]]` |
+| 11 | **`raw/` immutability** | Tracked files in `raw/` that have been modified (git diff HEAD) |
+
 After fixing, append to `log.md`.

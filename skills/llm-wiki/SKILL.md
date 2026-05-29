@@ -309,9 +309,25 @@ status: filed
 ---
 
 ## Naming Conventions
-- All filenames: lowercase-kebab-case.md
-- Wikilinks: [[filename-without-extension]]
-- Never use standard markdown links for internal links
+
+### Filenames
+- All filenames: `lowercase-kebab-case.md` — English only, no Chinese, no spaces
+- Stable, script-friendly slugs for `[[wikilinks]]`
+
+### Titles
+- Can be Chinese for readability: `# MSI/MSI-X 中断`
+- Keep consistent with the page's core topic
+
+### Body Language
+- Chinese as primary language
+- English terms retained as-is (e.g., "TLP", "BAR")
+- No translation of standard technical terms
+
+### Wikilinks
+- Always use the file slug: `[[page-name]]`
+- Never use Chinese title text as link target
+- For display readability, use pipe alias: `[[page-name|显示标题]]`
+- Never use standard markdown links for internal references
 
 ## Log Format
 Append to log.md after every operation. Format:
