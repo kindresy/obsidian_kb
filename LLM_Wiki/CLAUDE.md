@@ -220,10 +220,11 @@ After completing a walkthrough, offer: "Walkthrough complete. Analyze a specific
 1. Read `wiki/index.md` first
 2. **Vector search**: Run `python3 LLM_Wiki/search-index.py "<question>" --top-k 5` and read the top-k result pages
 3. Follow `[[wikilinks]]` one level deep from the result pages if relevant
-4. Synthesize answer with `[[wikilinks]]` as citations
-5. Always file answer to `wiki/queries/` (mandatory, no prompt)
-6. Offer promotion to `wiki/` as a concept page (y/n)
-7. Append to `log.md` (both query and optional promote events)
+4. **Before descending into any subdirectory** (e.g., `modules/`, `architecture/`, `queries/`), check for a `_context.md` file in that directory. Use its description to decide whether the directory is worth searching and which pages to read.
+5. Synthesize answer with `[[wikilinks]]` as citations
+6. Always file answer to `wiki/queries/` (mandatory, no prompt)
+7. Offer promotion to `wiki/` as a concept page (y/n)
+8. Append to `log.md` (both query and optional promote events)
 
 ## Lint Rules
 Run `python3 LLM_Wiki/lint-wiki.py LLM_Wiki/wiki/` (deterministic script) then resolve all issues. The script checks:
@@ -241,5 +242,6 @@ Run `python3 LLM_Wiki/lint-wiki.py LLM_Wiki/wiki/` (deterministic script) then r
 | 9 | **Module `source-path:` field** | Pages with `type: module` missing the `source-path:` frontmatter field |
 | 10 | **Architecture → module links** | Pages with `type: architecture` that don't link to any page in `modules/` via `[[wikilink]]` |
 | 11 | **`raw/` immutability** | Tracked files in `raw/` that have been modified (git diff HEAD) |
+| 12 | **`_context.md`** | Subdirectories with >10 pages lacking a `_context.md` file that describes the directory's purpose |
 
 After fixing, append to `log.md`.

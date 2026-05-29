@@ -23,8 +23,9 @@ ALLOWED_TYPES = {
     "concept", "person", "source-summary",
     "query-output", "query",  # "query" accepted for backward compat
     "module", "architecture",
+    "context",  # _context.md directory descriptors
 }
-SKIP_SLUGS = {"index", "log", "LICENSE"}
+SKIP_SLUGS = {"index", "log", "LICENSE", "_context"}
 
 
 def find_md_files(wiki_dir):
@@ -142,8 +143,8 @@ def lint(wiki_dir):
                 f"INVALID_DATE: {rel} date='{fm_date}' (expected YYYY-MM-DD)"
             )
 
-        # --- queries/ must have question: ---
-        if is_query and "question" not in fm:
+        # --- queries/ must have question: (skip _context.md) ---
+        if is_query and slug != "_context" and "question" not in fm:
             issues.append(f"NO_QUESTION: {rel} (query) lacks 'question:' in frontmatter")
 
         # --- module must have source-path: ---
@@ -228,6 +229,32 @@ def lint(wiki_dir):
         pass  # git not available — skip check
     except Exception:
         pass
+
+    # ================================================================
+    # PASS 5: _context.md check (directories with >10 pages need context)
+    # ================================================================
+    CONTEXT_FILENAME = "_context.md"
+    THRESHOLD = 10
+    for root, dirs, _ in os.walk(wiki_dir):
+        # Skip hidden dirs and the root itself
+        if os.path.basename(root).startswith("."):
+            continue
+        if root == wiki_dir:
+            continue
+        rel_dir = os.path.relpath(root, wiki_dir)
+        # Count .md files in this directory (excluding _context.md itself)
+        md_files = [
+            f for f in os.listdir(root)
+            if f.endswith(".md") and f != CONTEXT_FILENAME
+            and os.path.isfile(os.path.join(root, f))
+        ]
+        if len(md_files) > THRESHOLD:
+            ctx_path = os.path.join(root, CONTEXT_FILENAME)
+            if not os.path.exists(ctx_path):
+                issues.append(
+                    f"MISSING_CONTEXT: {rel_dir}/ has {len(md_files)} pages "
+                    f"but no {CONTEXT_FILENAME}"
+                )
 
     # ================================================================
     # Report
