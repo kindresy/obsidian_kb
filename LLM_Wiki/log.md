@@ -46,3 +46,9 @@ Ingested IOMMU tutorial paper (PDF) from raw/articles/iommu/IOMMU_TUTORIAL_ASPLO
 
 ## [2026-05-29] compile | 1 source → 8 pages
 Compiled IOMMU Tutorial @ ASPLOS 2016. Created/updated 8 pages: source-summary (iommu-tutorial-asplos-2016), 2 new concept pages (iommu, interrupt-remapping), 4 person pages (andy-kegel, paul-blinzer, arka-basu, maggie-chan), updated 3 existing pages (pci-virtualization, pcie-ats, root-complex).
+
+## [2026-05-29] ingest | IOMMU 授课台词
+Ingested lecture script based on IOMMU Tutorial @ ASPLOS 2016 (74 slides, ~90min). Saved to raw/articles/2026-05-29-iommu-tutorial-script.md.
+
+## [2026-05-29] compile | 1 source → 1 page
+Compiled IOMMU 授课台词. Created source-summary page (iommu-tutorial-script).

@@ -31,6 +31,7 @@ Last updated: 2026-05-29
 - [[iommu]] — IO Memory Management Unit 原理与实现 (2026-05-29)
 - [[interrupt-remapping]] — 中断重映射机制（IOMMU 核心功能） (2026-05-29)
 - [[iommu-tutorial-asplos-2016]] — ASPLOS 2016 IOMMU 教程源 (2026-05-29)
+- [[iommu-tutorial-script]] — IOMMU 授课台词（基于 ASPLOS 2016） (2026-05-29)
 - [[andy-kegel]] — AMD IOMMU 架构师 (2026-05-29)
 - [[paul-blinzer]] — Intel VT-d 架构师 (2026-05-29)
 - [[arka-basu]] — AMD IOMMU 架构师 (2026-05-29)

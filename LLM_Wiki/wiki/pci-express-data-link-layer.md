@@ -27,8 +27,9 @@ TLP 穿过数据链路层时添加：**2 字节 Sequence Number 前缀 + TLP + 4
 
 #### DLLP 格式与类型
 DLLP 共 6 字节（1 Type + 3 数据 + 2 CRC），共 18 种类型：
+
 | 类型 | 用途 |
-|------|------|
+|:--|:--|
 | ACK | 确认接收成功（含 AckNak_Seq_Num） |
 | NAK | 拒绝接收（含 AckNak_Seq_Num） |
 | PM_Enter_L1 | 进入 L1 状态请求 |

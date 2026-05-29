@@ -6,6 +6,9 @@ Thumbs.db
 *.base
 *~
 
+# Obsidian auto-generated (page preview cache)
+.obsidian/page-preview.json
+
 # Claude Code (environment-specific: settings, agent definitions, sessions)
 .claude/
 
