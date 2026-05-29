@@ -13,6 +13,10 @@ Thumbs.db
 .obsidian/graph.json
 .obsidian/plugins/*/data.json
 
+# Obsidian plugin binaries (reinstallable via community-plugins.json)
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+
 # LLM Wiki vector index (rebuildable via build-index.py)
 LLM_Wiki/.vector_index/
 
