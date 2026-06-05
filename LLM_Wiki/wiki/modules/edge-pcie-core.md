@@ -88,6 +88,73 @@ Interrupt Flow (MSI-X preferred):
   edge_udma_isr() ──► schedule engine_service_work()
   edge_notify_irq_isr() ──► notify_irq notifier chain
   edge_pcie_exception_event_isr() ──► exception FIFO read → exception_work()
+
+## Call Graph
+
+### `edge_probe()` — PCI 设备初始化调用链
+
+<!-- CODEGRAPH: edge_probe -->
+```mermaid
+graph LR
+    edge_probe["edge_probe"] --> edge_create_cdev["edge_create_cdev"]
+    edge_probe["edge_probe"] --> edge_create_udma_engines["edge_create_udma_engines"]
+    edge_probe["edge_probe"] --> edge_destroy_cdev["edge_destroy_cdev"]
+    edge_probe["edge_probe"] --> edge_destroy_udma_engines["edge_destroy_udma_engines"]
+    edge_probe["edge_probe"] --> edge_device_online["edge_device_online"]
+    edge_probe["edge_probe"] --> edge_disable_relax_order["edge_disable_relax_order"]
+    edge_probe["edge_probe"] --> edge_disable_switch_vdn_acs_redir["edge_disable_switch_vdn_acs_redir"]
+    edge_probe["edge_probe"] --> edge_dma_pool_create["edge_dma_pool_create"]
+    edge_probe["edge_probe"] --> edge_dma_pool_destory["edge_dma_pool_destory"]
+    edge_probe["edge_probe"] --> edge_exception_event_init["edge_exception_event_init"]
+    edge_probe["edge_probe"] --> edge_map_bars["edge_map_bars"]
+    edge_probe["edge_probe"] --> edge_unmap_bars["edge_unmap_bars"]
+```
+
+### `edge_ioctl()` — IOCTL 分发
+
+<!-- CODEGRAPH: edge_ioctl -->
+```mermaid
+graph LR
+    edge_ioctl["edge_ioctl"] --> edge_test_bit["edge_test_bit"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_alloc_block_mem["ioctl_do_alloc_block_mem"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_boot_read["ioctl_do_boot_read"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_boot_read_pro["ioctl_do_boot_read_pro"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_boot_udma_h2d_xfer["ioctl_do_boot_udma_h2d_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_boot_write["ioctl_do_boot_write"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_boot_write_pro["ioctl_do_boot_write_pro"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_bw_monitor_start["ioctl_do_bw_monitor_start"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_bw_monitor_stop["ioctl_do_bw_monitor_stop"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_config_exception["ioctl_do_config_exception"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_copy_from_block_mem["ioctl_do_copy_from_block_mem"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_copy_to_block_mem["ioctl_do_copy_to_block_mem"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_exception_owner["ioctl_do_exception_owner"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_free_block_mem["ioctl_do_free_block_mem"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_boot_state["ioctl_do_get_boot_state"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_card_type["ioctl_do_get_card_type"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_channel_status["ioctl_do_get_channel_status"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_dma_pool_info["ioctl_do_get_dma_pool_info"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_ep_flags["ioctl_do_get_ep_flags"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_ext_init["ioctl_do_get_ext_init"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_instance_num["ioctl_do_get_instance_num"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_get_pcie_info["ioctl_do_get_pcie_info"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_inspur_topo["ioctl_do_inspur_topo"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_led["ioctl_do_led"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_link_info["ioctl_do_link_info"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_mmio_d2h_xfer["ioctl_do_mmio_d2h_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_mmio_h2d_xfer["ioctl_do_mmio_h2d_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_read_bar["ioctl_do_read_bar"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_read_ext_addr["ioctl_do_read_ext_addr"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_set_device_id["ioctl_do_set_device_id"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_temperature["ioctl_do_temperature"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_udma_d2h_xfer["ioctl_do_udma_d2h_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_udma_h2d_xfer["ioctl_do_udma_h2d_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_udma_p2pib_xfer["ioctl_do_udma_p2pib_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_udma_p2pob_xfer["ioctl_do_udma_p2pob_xfer"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_wait_exception["ioctl_do_wait_exception"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_wait_exception_wakeup["ioctl_do_wait_exception_wakeup"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_write_bar["ioctl_do_write_bar"]
+    edge_ioctl["edge_ioctl"] --> ioctl_do_write_ext_addr["ioctl_do_write_ext_addr"]
+```
 ```
 
 ## Code References
