@@ -52,3 +52,9 @@ Ingested lecture script based on IOMMU Tutorial @ ASPLOS 2016 (74 slides, ~90min
 
 ## [2026-05-29] compile | 1 source → 1 page
 Compiled IOMMU 授课台词. Created source-summary page (iommu-tutorial-script).
+
+## [2026-05-29] ingest | DWC_avsbus Databook
+Ingested Synopsys AVSBus Controller Databook v1.00a (May 2025) — Adaptive Voltage Scaling Bus controller IP document. Saved to raw/articles/2026-05-29-dwc-avsbus-databook.md.
+
+## [2026-05-29] compile | 1 source → 2 pages
+Compiled DWC_avsbus Databook. Created source-summary (dwc-avsbus-databook) and concept page (avsbus).

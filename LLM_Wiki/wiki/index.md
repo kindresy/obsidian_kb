@@ -37,6 +37,10 @@ Last updated: 2026-05-29
 - [[arka-basu]] — AMD IOMMU 架构师 (2026-05-29)
 - [[maggie-chan]] — AMD IOMMU 架构师 (2026-05-29)
 
+## Hardware IP / Power Management
+- [[avsbus]] — Adaptive Voltage Scaling Bus 协议 (2026-05-29)
+- [[dwc-avsbus-databook]] — Synopsys AVSBus 控制器 Databook (2026-05-29)
+
 ## Code / Edge PCIe Driver
 - [[edge-pcie-driver]] — Edge PCIe Driver 架构总览 (2026-05-29)
 - [[edge-pcie-core]] — Edge PCIe 核心模块（DMA/MSI-X/字符设备） (2026-05-29)
