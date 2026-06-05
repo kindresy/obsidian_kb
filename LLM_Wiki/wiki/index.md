@@ -44,3 +44,4 @@ Last updated: 2026-05-29
 ## Code / Edge PCIe Driver
 - [[edge-pcie-driver]] — Edge PCIe Driver 架构总览 (2026-05-29)
 - [[edge-pcie-core]] — Edge PCIe 核心模块（DMA/MSI-X/字符设备） (2026-05-29)
+- [[linux-msi-enable]] — Linux MSI/MSI-X 中断启用流程（驱动+设备+内核三层面） (2026-06-05)

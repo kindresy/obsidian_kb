@@ -58,3 +58,12 @@ Ingested Synopsys AVSBus Controller Databook v1.00a (May 2025) — Adaptive Volt
 
 ## [2026-05-29] compile | 1 source → 2 pages
 Compiled DWC_avsbus Databook. Created source-summary (dwc-avsbus-databook) and concept page (avsbus).
+
+## [2026-06-05] query | how-to-enable-msi-in-linux (复查)
+Cross-domain query复查: "如何在 Linux 中启用 MSI 中断" — 综合 [[how-to-enable-msi-in-linux]]（原始答案）、[[msi-msi-x]]、[[linux-pci-subsystem]]、[[edge-pcie-core]] 四页内容。Filed to wiki/queries/how-to-enable-msi-in-linux-v2.md.
+
+## [2026-06-05] promote | linux-msi-enable
+Promoted query answer (v2) to wiki/linux-msi-enable.md as a first-class concept page covering driver API, device-side MSI generator, and kernel interrupt lifecycle.
+
+## [2026-06-05] lint | full wiki audit
+Deterministic: OK. Manual: 0 dead links, 0 orphans, 0 contradictions, no index drift. 2 draft stubs (mesif-protocol, powerpc). 16 empty Counter-Arguments (normal). Report: outputs/reports/2026-06-05-lint.md.

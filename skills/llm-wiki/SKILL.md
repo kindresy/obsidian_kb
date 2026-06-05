@@ -77,9 +77,9 @@ Analyze a code repository and create `module` and `architecture` wiki pages, lin
    - If local path: copy to `LLM_Wiki/raw/code/<repo-name>/`
    - Write `SUMMARY.md` with metadata.
 
-3. **Phase 1 — Explore:** Build directory map, detect language/build system, find entry points and module boundaries. Identify 5-15 key files (token budget: ~10-15 files). Do NOT read all files.
+3. **Phase 1 — Index with CodeGraph (preferred):** Run `codegraph init -i` in the repo directory. Then query with `codegraph query/keyword/`, `codegraph callers/callees` to understand the symbol graph. **Zero file reads** needed for this phase. If CodeGraph unavailable, fall back to manual directory/build/module analysis (~10-15 files, do NOT read all files).
 
-4. **Phase 2 — Understand:** Read identified key files. Extract exported functions, data structures, config options, dependencies, protocol references. Group by module (token budget: ~15-25 files).
+4. **Phase 2 — Understand (Selective Deep Read):** If CodeGraph available: read only header files and entry points (~3-5 files max). Use `codegraph callees` to understand function behavior without reading full bodies. Manual fallback: read identified key files (~15-25 files). Extract exported functions, data structures, config options, dependencies, protocol references.
 
 5. **Phase 3 — Extract & Link:**
    - Create/update `wiki/modules/<name>.md` for each module using the `module` template.
@@ -95,6 +95,9 @@ Analyze a code repository and create `module` and `architecture` wiki pages, lin
    - Append to `log.md`
 
 ### Token Budget
+**With CodeGraph**: Phase 1 = 0 file reads. Phase 2 = 3-5 files max. ~95% reduction vs manual.
+
+**Manual fallback** (no CodeGraph):
 | Repo Size | Files Read |
 |-----------|-----------|
 | <100 files | 15-25 total |

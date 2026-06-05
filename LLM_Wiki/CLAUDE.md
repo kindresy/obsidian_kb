@@ -159,27 +159,35 @@ Analyze a code repository (local path or remote URL) and create `module` and `ar
 3. Verify `raw/code/<repo-name>/` exists with source files
 4. Write `raw/code/<repo-name>/SUMMARY.md` with metadata (source, clone date, etc.)
 
-#### Phase 1: Explore (Structure Discovery)
-**Token budget**: ~10-15 files. Do NOT read all files.
-1. **Directory tree**: List files by extension (`find` or `glob`). Build a directory map.
-2. **Language detection**: Check file extensions (`.c`/`.h` → C, `.rs` → Rust, `.py` → Python, etc.)
-3. **Build system detection**: Look for `Makefile`, `CMakeLists.txt`, `Cargo.toml`, `Kconfig`, etc. Read entry point.
-4. **Entry point detection**: Search for `main(`, `module_init(`, `fn main(`, `if __name__` in key dirs.
-5. **Module boundaries**: Use language-specific heuristics:
-   - **C**: subdirs with `Makefile`/`Kconfig` = module; one `.c` per driver
-   - **Rust**: `src/` subdirs with `mod.rs`; `Cargo.toml` `[workspace]` members
-   - **Python**: packages with `__init__.py`
-6. **Identify 5-15 key files** to read deeply: entry points, core headers, main implementations.
+#### Phase 1: CodeGraph Indexing (Preferred)
+**Token budget**: ~1-2 tool calls (vs 15-25 file reads). Always prefer CodeGraph over manual file reading.
 
-#### Phase 2: Understand (Deep Read)
-**Token budget**: ~15-25 files. For each key file identified in Phase 1:
-1. Read the file
-2. Extract:
+If CodeGraph is installed (check with `codegraph --version` via Bash):
+1. **Build index**: Run `codegraph init -i` in the code repo directory to parse all source files into a symbol graph.
+2. **Query symbols**: `codegraph query "<keyword>"` — search for functions/structs/enums by name
+3. **Find relationships**: `codegraph callers <function>` / `codegraph callees <function>` — trace call graph
+4. **Get overview**: `codegraph status` — see node/edge counts; `codegraph files` — see project file structure
+5. **Module boundaries**: Use the symbol count per file from CodeGraph to identify which files are the most complex (more symbols = core module)
+6. **Skip direct file reading entirely** for symbol extraction. Only read specific source files when you need detailed context on a particular function's implementation (e.g., to understand register configurations).
+
+If CodeGraph is NOT available, fall back to manual exploration:
+1. **Directory tree**: List files by extension (`find` or `glob`). Build a directory map.
+2. **Build system detection**: Look for `Makefile`, `CMakeLists.txt`, `Cargo.toml`, `Kconfig`, etc. Read entry point.
+3. **Module boundaries**: Use language-specific heuristics (subdirs with build files, packages with `__init__.py`, etc.)
+4. **Identify 5-15 key files** to read deeply: entry points, core headers, main implementations.
+
+#### Phase 2: Understand (Selective Deep Read)
+**Token budget**: ~3-5 files max (CodeGraph path) or ~15-25 files (manual fallback).
+1. If CodeGraph available:
+   - Read only the **header files** and **entry point** source files for detailed context
+   - Use `codegraph callees` to understand what a function does without reading its full body
+   - Use `codegraph impact` to understand what would be affected by changes
+2. For each module, extract:
    - **Exported functions** (public API) — name, signature, purpose
    - **Data structures** — struct/enum name, fields, purpose
    - **Configuration options** — `#define`, Kconfig, feature flags
    - **Dependencies** — `#include`, `use`, `import`
-   - **Protocol/hardware references** — comments mentioning specs (e.g., "PCIe spec 4.2.3", "MSI-X")
+   - **Protocol/hardware references** — comments mentioning specs
 3. Group findings by module
 
 #### Phase 3: Extract & Link (Entity Creation)
@@ -207,6 +215,9 @@ For each existing **concept page** linked FROM a module page:
 4. **Update `raw/code/<repo-name>/SUMMARY.md`** with walkthrough metadata
 
 ### Token Budget Strategy
+**With CodeGraph** (preferred): Phase 1 = 0 file reads (only `codegraph query` calls). Phase 2 = 3-5 files max. Total: ~95% reduction vs manual.
+
+**Manual fallback** (no CodeGraph):
 | Repo Size | Phase 1 (Explore) | Phase 2 (Understand) | Phase 3-5 (Link) |
 |-----------|-------------------|---------------------|-------------------|
 | Small (<100 files) | 5-10 files | 10-15 files | All new pages |
