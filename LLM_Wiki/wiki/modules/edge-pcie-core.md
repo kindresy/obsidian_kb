@@ -155,7 +155,6 @@ graph LR
     edge_ioctl["edge_ioctl"] --> ioctl_do_write_bar["ioctl_do_write_bar"]
     edge_ioctl["edge_ioctl"] --> ioctl_do_write_ext_addr["ioctl_do_write_ext_addr"]
 ```
-```
 
 ## Code References
 
@@ -171,3 +170,5 @@ graph LR
 - `edge.h:457-510` — `struct edge_dev`: Main device structure
 - `edge.h:349-364` — `struct udma_desc`: DMA descriptor format
 - `edge.h:774-826` — All EDGE_IOCTL definitions
+
+

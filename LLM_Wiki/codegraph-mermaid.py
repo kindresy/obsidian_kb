@@ -169,8 +169,8 @@ def update_wiki_page(conn: sqlite3.Connection, page_path: str) -> bool:
     with open(page_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Look for CODEGRAPH markers
-    markers = re.findall(r'<!-- CODEGRAPH:\s*([^\s]+)\s*-->', content)
+    # Look for CODEGRAPH markers (with optional leading whitespace)
+    markers = re.findall(r'\s*<!-- CODEGRAPH:\s*([^\s]+)\s*-->', content)
 
     if not markers:
         print(f"  No CODEGRAPH markers found in {page_path}")
@@ -182,12 +182,12 @@ def update_wiki_page(conn: sqlite3.Connection, page_path: str) -> bool:
 
         # Replace content between CODEGRAPH marker and next ```mermaid...``` block
         pattern = re.compile(
-            rf'(<!-- CODEGRAPH:\s*{re.escape(func_name)}\s*-->\n)(?:```mermaid.*?```\n)?',
+            rf'(\s*<!-- CODEGRAPH:\s*{re.escape(func_name)}\s*-->(?:\r?\n)?)(?:```mermaid.*?```\r?\n)?',
             re.DOTALL
         )
 
         if pattern.search(content):
-            content = pattern.sub(r'\1' + graph, content)
+            content = pattern.sub(r'\1\n' + graph, content)
             print(f"  Updated graph for '{func_name}' in {page_path}")
         else:
             print(f"  Warning: could not update graph for '{func_name}'", file=sys.stderr)
