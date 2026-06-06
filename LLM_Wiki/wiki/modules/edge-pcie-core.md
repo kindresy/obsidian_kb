@@ -94,8 +94,40 @@ Interrupt Flow (MSI-X preferred):
 ### `edge_probe()` — PCI 设备初始化调用链
 
 <!-- CODEGRAPH: edge_probe -->
+
 ```mermaid
 graph LR
+    subgraph entry[Entry Points]
+        edge_probe["edge_probe"]
+    end
+    style entry fill:#1a237e,color:#fff
+    subgraph interface[Userspace Interface]
+        edge_create_cdev["edge_create_cdev"]
+        edge_destroy_cdev["edge_destroy_cdev"]
+    end
+    style interface fill:#01579b,color:#fff
+    subgraph dma[DMA Engine]
+        edge_create_udma_engines["edge_create_udma_engines"]
+        edge_destroy_udma_engines["edge_destroy_udma_engines"]
+        edge_dma_pool_create["edge_dma_pool_create"]
+        edge_dma_pool_destory["edge_dma_pool_destory"]
+    end
+    style dma fill:#1b5e20,color:#fff
+    subgraph hardware[Hardware Abstraction]
+        edge_map_bars["edge_map_bars"]
+        edge_unmap_bars["edge_unmap_bars"]
+    end
+    style hardware fill:#4a148c,color:#fff
+    subgraph monitor[Exception Monitor]
+        edge_exception_event_init["edge_exception_event_init"]
+    end
+    style monitor fill:#b71c1c,color:#fff
+    subgraph core[Core Logic]
+        edge_device_online["edge_device_online"]
+        edge_disable_relax_order["edge_disable_relax_order"]
+        edge_disable_switch_vdn_acs_redir["edge_disable_switch_vdn_acs_redir"]
+    end
+    style core fill:#37474f,color:#fff
     edge_probe["edge_probe"] --> edge_create_cdev["edge_create_cdev"]
     edge_probe["edge_probe"] --> edge_create_udma_engines["edge_create_udma_engines"]
     edge_probe["edge_probe"] --> edge_destroy_cdev["edge_destroy_cdev"]
@@ -113,8 +145,64 @@ graph LR
 ### `edge_ioctl()` — IOCTL 分发
 
 <!-- CODEGRAPH: edge_ioctl -->
+
 ```mermaid
 graph LR
+    subgraph interface[Userspace Interface]
+        ioctl_do_alloc_block_mem["ioctl_do_alloc_block_mem"]
+        ioctl_do_boot_read["ioctl_do_boot_read"]
+        ioctl_do_boot_read_pro["ioctl_do_boot_read_pro"]
+        ioctl_do_boot_write["ioctl_do_boot_write"]
+        ioctl_do_boot_write_pro["ioctl_do_boot_write_pro"]
+        ioctl_do_bw_monitor_start["ioctl_do_bw_monitor_start"]
+        ioctl_do_bw_monitor_stop["ioctl_do_bw_monitor_stop"]
+        ioctl_do_copy_from_block_mem["ioctl_do_copy_from_block_mem"]
+        ioctl_do_copy_to_block_mem["ioctl_do_copy_to_block_mem"]
+        ioctl_do_free_block_mem["ioctl_do_free_block_mem"]
+        ioctl_do_get_boot_state["ioctl_do_get_boot_state"]
+        ioctl_do_get_card_type["ioctl_do_get_card_type"]
+        ioctl_do_get_channel_status["ioctl_do_get_channel_status"]
+        ioctl_do_get_ep_flags["ioctl_do_get_ep_flags"]
+        ioctl_do_get_ext_init["ioctl_do_get_ext_init"]
+        ioctl_do_get_instance_num["ioctl_do_get_instance_num"]
+        ioctl_do_get_pcie_info["ioctl_do_get_pcie_info"]
+        ioctl_do_inspur_topo["ioctl_do_inspur_topo"]
+        ioctl_do_led["ioctl_do_led"]
+        ioctl_do_link_info["ioctl_do_link_info"]
+        ioctl_do_mmio_d2h_xfer["ioctl_do_mmio_d2h_xfer"]
+        ioctl_do_mmio_h2d_xfer["ioctl_do_mmio_h2d_xfer"]
+        ioctl_do_read_ext_addr["ioctl_do_read_ext_addr"]
+        ioctl_do_set_device_id["ioctl_do_set_device_id"]
+        ioctl_do_temperature["ioctl_do_temperature"]
+        ioctl_do_write_ext_addr["ioctl_do_write_ext_addr"]
+    end
+    style interface fill:#01579b,color:#fff
+    subgraph dma[DMA Engine]
+        ioctl_do_boot_udma_h2d_xfer["ioctl_do_boot_udma_h2d_xfer"]
+        ioctl_do_get_dma_pool_info["ioctl_do_get_dma_pool_info"]
+        ioctl_do_udma_d2h_xfer["ioctl_do_udma_d2h_xfer"]
+        ioctl_do_udma_h2d_xfer["ioctl_do_udma_h2d_xfer"]
+        ioctl_do_udma_p2pib_xfer["ioctl_do_udma_p2pib_xfer"]
+        ioctl_do_udma_p2pob_xfer["ioctl_do_udma_p2pob_xfer"]
+    end
+    style dma fill:#1b5e20,color:#fff
+    subgraph hardware[Hardware Abstraction]
+        ioctl_do_read_bar["ioctl_do_read_bar"]
+        ioctl_do_write_bar["ioctl_do_write_bar"]
+    end
+    style hardware fill:#4a148c,color:#fff
+    subgraph monitor[Exception Monitor]
+        ioctl_do_config_exception["ioctl_do_config_exception"]
+        ioctl_do_exception_owner["ioctl_do_exception_owner"]
+        ioctl_do_wait_exception["ioctl_do_wait_exception"]
+        ioctl_do_wait_exception_wakeup["ioctl_do_wait_exception_wakeup"]
+    end
+    style monitor fill:#b71c1c,color:#fff
+    subgraph core[Core Logic]
+        edge_ioctl["edge_ioctl"]
+        edge_test_bit["edge_test_bit"]
+    end
+    style core fill:#37474f,color:#fff
     edge_ioctl["edge_ioctl"] --> edge_test_bit["edge_test_bit"]
     edge_ioctl["edge_ioctl"] --> ioctl_do_alloc_block_mem["ioctl_do_alloc_block_mem"]
     edge_ioctl["edge_ioctl"] --> ioctl_do_boot_read["ioctl_do_boot_read"]
