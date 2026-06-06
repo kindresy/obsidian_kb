@@ -59,6 +59,12 @@ Ingested Synopsys AVSBus Controller Databook v1.00a (May 2025) — Adaptive Volt
 ## [2026-05-29] compile | 1 source → 2 pages
 Compiled DWC_avsbus Databook. Created source-summary (dwc-avsbus-databook) and concept page (avsbus).
 
+## [2026-06-06] ingest | Understand Anything
+Ingested tool documentation: Understand Anything — 多智能体代码分析管道. Saved to raw/articles/2026-06-06-understand-anything.md.
+
+## [2026-06-06] compile | 1 source → 2 pages
+Compiled Understand Anything documentation. Created source-summary (2026-06-06-understand-anything) and concept page (understand-anything).
+
 ## [2026-06-05] query | how-to-enable-msi-in-linux (复查)
 Cross-domain query复查: "如何在 Linux 中启用 MSI 中断" — 综合 [[how-to-enable-msi-in-linux]]（原始答案）、[[msi-msi-x]]、[[linux-pci-subsystem]]、[[edge-pcie-core]] 四页内容。Filed to wiki/queries/how-to-enable-msi-in-linux-v2.md.
 

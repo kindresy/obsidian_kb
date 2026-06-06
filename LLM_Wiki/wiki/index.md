@@ -45,3 +45,9 @@ Last updated: 2026-05-29
 - [[edge-pcie-driver]] — Edge PCIe Driver 架构总览 (2026-05-29)
 - [[edge-pcie-core]] — Edge PCIe 核心模块（DMA/MSI-X/字符设备） (2026-05-29)
 - [[linux-msi-enable]] — Linux MSI/MSI-X 中断启用流程（驱动+设备+内核三层面） (2026-06-05)
+
+## Tools / Code Analysis
+- [[understand-anything]] — 多智能体代码分析管道，生成标准化 JSON 知识图 (2026-06-06)
+- [[2026-06-06-understand-anything]] — Understand Anything 源文档摘要 (2026-06-06)
+- [[multi-agent-pipeline]] — 多智能体管道架构模式 (2026-06-06)
+- [[code-knowledge-graph]] — 代码知识图标准化格式 (2026-06-06)
