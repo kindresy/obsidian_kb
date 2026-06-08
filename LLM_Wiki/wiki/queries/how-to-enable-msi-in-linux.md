@@ -139,5 +139,3 @@ Device Event → PCIe MSI-X Message → CPU APIC
 - [[msi-msi-x]] — MSI/MSI-X 中断机制理论
 - [[linux-pci-subsystem]] — Linux PCI 子系统初始化与中断架构
 - [[pci-interrupt-mechanism]] — PCI INTx vs MSI 对比
-- [[edge-pcie-core]] — Edge PCIe 驱动实现代码
-- [[edge-pcie-driver]] — Edge PCIe 驱动架构总览

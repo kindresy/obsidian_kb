@@ -61,7 +61,5 @@ MSI 有四种变体（32/64 位地址，带/不带 Masking）：
 
 ...
 
-## Code References
+## Implementations
 
-- [[edge-pcie-core]] — edge-driver/edge.c:4999 — MSI-X/MSI allocation (`pci_enable_msix_range`, `pci_alloc_irq_vectors_affinity`) and INTx fallback
-- [[edge-pcie-core]] — edge-driver/edge.c:4903 — MSI generator register configuration for interrupt delivery

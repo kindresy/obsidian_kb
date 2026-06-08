@@ -12,7 +12,6 @@ status: draft
 ## See Also
 
 - [[understand-anything]] — 13 种 Node、26 种 Edge 的知识图实现
-- [[edge-pcie-core]] — CodeGraph 图在 wiki 中的实践
 
 ## Counter-Arguments and Gaps
 

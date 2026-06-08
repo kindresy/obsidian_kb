@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "description": "别名映射表：文档概念名 ↔ 代码符号名",
+    "source": "scripts/kb/alias_table.json",
+    "updated": "2026-06-08"
+  },
+  "aliases": [
+    {"canonical": "tx abort", "variants": ["tx_abrt", "TX_ABRT", "transmit abort", "abort source"]},
+    {"canonical": "NACK", "variants": ["no_ack", "ack_fail", "nack", "NAK"]},
+    {"canonical": "BAR0", "variants": ["bar0", "BAR_0", "pci_resource_start"]},
+    {"canonical": "DMA ring", "variants": ["desc_ring", "bd_ring", "tx_ring", "rx_ring", "dma_ring"]},
+    {"canonical": "interrupt status", "variants": ["irq_status", "int_sts", "int_status", "ISR"]},
+    {"canonical": "MSI", "variants": ["msi", "Message Signaled Interrupt", "MSI-X", "msix"]},
+    {"canonical": "MMIO", "variants": ["mmio", "MMIO", "ioremap", "readl", "writel"]},
+    {"canonical": "scatter-gather DMA", "variants": ["sg_dma", "sgm", "scatter_gather", "SG"]},
+    {"canonical": "probe", "variants": ["probe", "init", "discover", "enumeration"]},
+    {"canonical": "interrupt handler", "variants": ["isr", "IRQ handler", "interrupt service routine", "bottom half"]}
+  ]
+}
