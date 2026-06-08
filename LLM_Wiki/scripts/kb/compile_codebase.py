@@ -193,7 +193,9 @@ def compile_codebase(db_path, repo_name):
         f.write("(Populated by `kb bind propose`)\n\n")
 
         f.write("## Generated Graphs\n")
-        f.write(f"See: `kb graph export {repo_name}`\n")
+        f.write(f"See: `kb graph export {repo_name}`\n\n")
+        f.write("## Counter-Arguments and Gaps\n\n")
+        f.write("...\n")
 
     print(f"  [OK] {page_path}")
 
@@ -211,11 +213,13 @@ def compile_codebase(db_path, repo_name):
 
 
 def main(args):
-    if not args:
+    # args[0] is the sub-command ("compile"), repo name is args[1]
+    repo_idx = 1 if args and args[0] == "compile" else 0
+    if len(args) <= repo_idx:
         print("Usage: kb code compile <repo-name> [--codegraph-db <path>]")
         sys.exit(1)
 
-    repo_name = args[0]
+    repo_name = args[repo_idx]
 
     # Find CodeGraph DB
     if "--codegraph-db" in args:

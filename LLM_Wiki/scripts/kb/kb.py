@@ -45,6 +45,7 @@ def main():
 
     cmd = sys.argv[1]
     sub = sys.argv[2] if len(sys.argv) > 2 else None
+    # Pass args including sub-command; modules handle their own parsing
     args = sys.argv[2:] if sub else sys.argv[1:]
 
     # Look up route

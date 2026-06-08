@@ -62,3 +62,4 @@ Last updated: 2026-06-08
 <!-- Flow 页面由 `kb flow generate` 生成 -->
 
 ## Tools
+- [[codegraph]] — CodeGraph 代码知识图谱工具参考 (2026-06-08)
