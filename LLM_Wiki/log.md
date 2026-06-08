@@ -71,6 +71,15 @@ Extracted PDFs from i3c repo doc/: Introduction (NXP, 2017), Chinese translation
 ## [2026-06-06] compile | 3 sources → 5 pages
 Compiled I3C documentation. Created 2 source-summaries (mipi-i3c-introduction, mipi-i3c-chinese-doc), concept page (i3c), and 2 stub pages (mipi-i3c-basic-spec, i2c).
 
+## [2026-06-06] query | i3c-vs-i2c-differences
+Answered "I3C 和 I2C 的主要区别" — compared speed, interrupt, addressing, hot-plug, multi-master, power, error handling. Filed to wiki/queries/i3c-vs-i2c-differences.md.
+
+## [2026-06-06] promote | i3c-vs-i2c
+Promoted query answer to wiki/i3c-vs-i2c.md as a concept page comparing I3C and I2C across 10 dimensions.
+
+## [2026-06-08] compile | codegraph-architecture
+Created codegraph-architecture.md documenting the full CodeGraph + Understand Anything integration architecture, including data flow diagram, 3 usage paths, 13 layers, and tool index.
+
 ## [2026-06-05] query | how-to-enable-msi-in-linux (复查)
 Cross-domain query复查: "如何在 Linux 中启用 MSI 中断" — 综合 [[how-to-enable-msi-in-linux]]（原始答案）、[[msi-msi-x]]、[[linux-pci-subsystem]]、[[edge-pcie-core]] 四页内容。Filed to wiki/queries/how-to-enable-msi-in-linux-v2.md.
 

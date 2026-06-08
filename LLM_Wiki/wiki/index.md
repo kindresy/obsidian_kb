@@ -49,11 +49,13 @@ Last updated: 2026-05-29
 ## Tools / Code Analysis
 - [[understand-anything]] — 多智能体代码分析管道，生成标准化 JSON 知识图 (2026-06-06)
 - [[2026-06-06-understand-anything]] — Understand Anything 源文档摘要 (2026-06-06)
+- [[codegraph-architecture]] — CodeGraph + Understand Anything 代码分析架构总览 (2026-06-08)
 - [[multi-agent-pipeline]] — 多智能体管道架构模式 (2026-06-06)
 - [[code-knowledge-graph]] — 代码知识图标准化格式 (2026-06-06)
 
 ## Bus Protocols / I3C
 - [[i3c]] — MIPI I3C 总线协议（I2C 下一代演进） (2026-06-06)
+- [[i3c-vs-i2c]] — I3C 和 I2C 核心差异对比（速度/中断/地址/热插拔） (2026-06-06)
 - [[mipi-i3c-basic-spec]] — MIPI I3C Basic Specification v1.1.1 (2026-06-06)
 - [[2026-06-06-mipi-i3c-introduction]] — NXP I3C 技术介绍摘要 (2026-06-06)
 - [[2026-06-06-mipi-i3c-chinese-doc]] — I3C 中文文档摘要 (2026-06-06)
