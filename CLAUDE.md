@@ -39,6 +39,9 @@ When performing wiki operations:
 - **file-prep** (`.claude/skills/file-prep/SKILL.md`) — 大文件预处理：图片迁移、路径重写、文件切片
   - 自动在文件 >50KB 或含嵌入图片时启用
   - 命令格式: `prep <文件路径> [--source-name <名称>]`
+- **understand** (`.claude/skills/understand/SKILL.md`) — 多智能体代码分析管道，生成交互式知识图谱
+  - 子技能: understand-chat / understand-dashboard / understand-diff / understand-domain
+  - 子技能: understand-explain / understand-knowledge / understand-onboard
 
 ## Skill 管理规则
 
