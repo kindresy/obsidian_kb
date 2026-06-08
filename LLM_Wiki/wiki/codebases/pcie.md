@@ -78,3 +78,7 @@ code-commit: unknown
 
 ## Generated Graphs
 See: `kb graph export pcie`
+
+## Counter-Arguments and Gaps
+
+...

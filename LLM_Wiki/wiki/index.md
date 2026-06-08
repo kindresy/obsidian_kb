@@ -1,6 +1,6 @@
 # LLM Wiki Index
 
-Last updated: 2026-05-29
+Last updated: 2026-06-08
 
 ## Computer Architecture / PCI / PCIe
 - [[pci-express-体系结构导读]] — 《PCI Express 体系结构导读》全书摘要 (2026-05-28)
@@ -54,3 +54,11 @@ Last updated: 2026-05-29
 - [[2026-06-06-mipi-i3c-introduction]] — NXP I3C 技术介绍摘要 (2026-06-06)
 - [[2026-06-06-mipi-i3c-chinese-doc]] — I3C 中文文档摘要 (2026-06-06)
 - [[i2c]] — I2C 总线协议 (2026-06-06)
+
+## Codebases
+- [[pcie]] — Edge PCIe 驱动代码总览（173 函数，13 架构层） (2026-06-08)
+
+## Flows
+<!-- Flow 页面由 `kb flow generate` 生成 -->
+
+## Tools

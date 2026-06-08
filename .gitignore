@@ -33,6 +33,9 @@ Thumbs.db
 # LLM Wiki vector index (rebuildable via build-index.py)
 LLM_Wiki/.vector_index/
 
+# LLM Wiki .kb index layer (rebuildable from raw/ + wiki/)
+LLM_Wiki/.kb/
+
 # Python cache
 __pycache__/
 *.pyc
