@@ -51,3 +51,10 @@ Last updated: 2026-05-29
 - [[2026-06-06-understand-anything]] — Understand Anything 源文档摘要 (2026-06-06)
 - [[multi-agent-pipeline]] — 多智能体管道架构模式 (2026-06-06)
 - [[code-knowledge-graph]] — 代码知识图标准化格式 (2026-06-06)
+
+## Bus Protocols / I3C
+- [[i3c]] — MIPI I3C 总线协议（I2C 下一代演进） (2026-06-06)
+- [[mipi-i3c-basic-spec]] — MIPI I3C Basic Specification v1.1.1 (2026-06-06)
+- [[2026-06-06-mipi-i3c-introduction]] — NXP I3C 技术介绍摘要 (2026-06-06)
+- [[2026-06-06-mipi-i3c-chinese-doc]] — I3C 中文文档摘要 (2026-06-06)
+- [[i2c]] — I2C 总线协议 (2026-06-06)

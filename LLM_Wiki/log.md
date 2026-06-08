@@ -65,6 +65,12 @@ Ingested tool documentation: Understand Anything — 多智能体代码分析管
 ## [2026-06-06] compile | 1 source → 2 pages
 Compiled Understand Anything documentation. Created source-summary (2026-06-06-understand-anything) and concept page (understand-anything).
 
+## [2026-06-06] ingest | MIPI I3C documentation (3 sources)
+Extracted PDFs from i3c repo doc/: Introduction (NXP, 2017), Chinese translation doc, and I3C Basic spec v1.1.1. Saved to raw/articles/i3c/.
+
+## [2026-06-06] compile | 3 sources → 5 pages
+Compiled I3C documentation. Created 2 source-summaries (mipi-i3c-introduction, mipi-i3c-chinese-doc), concept page (i3c), and 2 stub pages (mipi-i3c-basic-spec, i2c).
+
 ## [2026-06-05] query | how-to-enable-msi-in-linux (复查)
 Cross-domain query复查: "如何在 Linux 中启用 MSI 中断" — 综合 [[how-to-enable-msi-in-linux]]（原始答案）、[[msi-msi-x]]、[[linux-pci-subsystem]]、[[edge-pcie-core]] 四页内容。Filed to wiki/queries/how-to-enable-msi-in-linux-v2.md.
 
