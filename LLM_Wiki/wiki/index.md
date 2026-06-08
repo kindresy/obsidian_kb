@@ -59,7 +59,9 @@ Last updated: 2026-06-08
 - [[pcie]] — Edge PCIe 驱动代码总览（173 函数，13 架构层） (2026-06-08)
 
 ## Flows
-<!-- Flow 页面由 `kb flow generate` 生成 -->
+- [[edge_probe-flow]] — Edge PCIe Probe Flow (设备初始化流程) (2026-06-08)
+- [[i3c_master_register-flow]] — I3C Master Probe Flow (总线注册与初始化) (2026-06-08)
+- [[i3c_master_do_daa-flow]] — I3C DAA Flow (动态地址分配流程) (2026-06-08)
 
 ## Tools
 - [[codegraph]] — CodeGraph 代码知识图谱工具参考 (2026-06-08)

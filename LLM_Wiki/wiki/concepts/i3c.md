@@ -70,6 +70,34 @@ CCC 是 I3C 中用于总线管理和配置的命令帧，涵盖：
 - [[pci-express]] — PCI Express（另一类高速总线，对比参考）
 - [[i2c]] — I2C 总线（I3C 的前身）
 
+
+## Implementations
+
+- `i3c_master_do_daa()` — IMPLEMENTS
+  - DAA - Dynamic Address Assignment
+- `i3c_master_do_daa_ext()` — IMPLEMENTS
+  - DAA extended version
+- `i3c_master_entdaa_locked()` — IMPLEMENTS
+  - ENTDAA CCC command
+- `i3c_master_queue_ibi()` — IMPLEMENTS
+  - In-Band Interrupt queue
+- `i3c_master_send_ccc_cmd_locked()` — IMPLEMENTS
+  - CCC command send
+- `i3c_master_enec_locked()` — IMPLEMENTS
+  - ENEC - enable events
+- `i3c_master_disec_locked()` — IMPLEMENTS
+  - DISEC - disable events
+- `i3c_master_enable_hotjoin()` — IMPLEMENTS
+  - Hot-Join enable
+- `i3c_master_disable_hotjoin()` — IMPLEMENTS
+  - Hot-Join disable
+- `i3c_master_get_free_addr()` — IMPLEMENTS
+  - Free dynamic address allocation
+- `i3c_master_defslvs_locked()` — IMPLEMENTS
+  - DEFSLVS CCC
+- `i3c_master_register()` — IMPLEMENTS
+  - I3C master registration
+
 ## Counter-Arguments and Gaps
 
 ...

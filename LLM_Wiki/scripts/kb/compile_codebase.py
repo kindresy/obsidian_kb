@@ -133,11 +133,24 @@ def compile_codebase(db_path, repo_name):
         key=lambda x: -x[1]
     )[:20]
 
-    # Commit info
-    commit_row = conn.execute(
-        "SELECT value FROM project_metadata WHERE key = 'lastCommit'"
-    ).fetchone()
-    commit_sha = commit_row[0] if commit_row else "unknown"
+    # Commit info — try multiple possible keys
+    commit_sha = "unknown"
+    for key in ['lastCommit', 'commit', 'gitCommitHash']:
+        r = conn.execute("SELECT value FROM project_metadata WHERE key = ?", (key,)).fetchone()
+        if r:
+            commit_sha = r[0]
+            break
+    # Fallback: try git command
+    if commit_sha == "unknown":
+        try:
+            import subprocess
+            repo_dir = os.path.join(CG_DB, repo_name)
+            commit_sha = subprocess.run(
+                ["git", "rev-parse", "HEAD"], capture_output=True, text=True,
+                cwd=repo_dir, timeout=5
+            ).stdout.strip()[:12]
+        except Exception:
+            pass
 
     today = date.today().isoformat()
 

@@ -54,6 +54,12 @@ I2C 几乎没有内置错误检测。I3C 在 SDR 模式增加了奇偶校验，H
 - [[2026-06-06-mipi-i3c-introduction]] — NXP I3C 技术介绍
 - [[2026-06-06-mipi-i3c-chinese-doc]] — I3C 中文文档摘要
 
+
+## Implementations
+
+- `i3c_master_do_daa()` — RELATED
+  - DAA is key I3C feature vs I2C
+
 ## Counter-Arguments and Gaps
 
 ...
