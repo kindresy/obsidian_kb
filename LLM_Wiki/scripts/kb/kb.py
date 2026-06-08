@@ -2,18 +2,20 @@
 """
 kb — Engineering Knowledge Compiler CLI
 
-Usage:
-  kb code index <repo-path>          Build CodeGraph index
-  kb code compile <repo-name>        Compile codebase → wiki pages
-  kb concept extract                  Extract concepts from wiki/concepts/
-  kb bind propose <repo-name>        Generate candidate bindings
-  kb bind review                     List pending bindings
-  kb bind promote <binding-id>       Accept a binding
-  kb flow generate <func-name>       Generate Flow page from call chain
-  kb graph export <repo-name>        Export JSON knowledge graph
-  kb graph mermaid <func-name>       Generate Mermaid call graph
-  kb audit                           Audit raw/ for unprocessed files
-  kb ask "<question>"                Hybrid query across wiki + code
+Usage: kb <command> [sub-command] [args]
+
+Commands:
+  code index <repo>          Build CodeGraph index
+  code compile <repo>        Compile codebase → wiki pages
+  concept extract             Extract concepts from wiki/concepts/
+  bind propose <repo>        Generate candidate bindings
+  bind review                List pending bindings
+  bind promote <id>          Accept a binding
+  flow generate <func>       Generate Flow page
+  graph export <repo>        Export JSON knowledge graph
+  graph mermaid <func>       Generate Mermaid call graph
+  graph layers <repo>        Show architecture layers
+  audit                      Audit raw/ for unprocessed files
 """
 import sys
 import os
@@ -21,47 +23,48 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
+# (command, sub-command) → module_name
+ROUTES = {
+    ("code", "index"):    "code_index",
+    ("code", "compile"):  "compile_codebase",
+    ("concept", "extract"): "concept_extract",
+    ("bind", "propose"):  "bind_concepts",
+    ("bind", "review"):   "bind_concepts",
+    ("bind", "promote"):  "bind_concepts",
+    ("flow", "generate"): "flow_generate",
+    ("graph", "export"):  "graph_export",
+    ("graph", "mermaid"): "graph_export",
+    ("graph", "layers"):  "graph_export",
+    ("audit", None):      "audit",     # no sub-command needed
+}
+
 def main():
-    if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+        print(__doc__.strip())
+        sys.exit(0)
 
     cmd = sys.argv[1]
-    args = sys.argv[2:]
+    sub = sys.argv[2] if len(sys.argv) > 2 else None
+    args = sys.argv[2:] if sub else sys.argv[1:]
 
-    commands = {
-        "code":     {"index": "code_index", "compile": "compile_codebase"},
-        "concept":  {"extract": "concept_extract"},
-        "bind":     {"propose": "bind_concepts", "review": "bind_review", "promote": "bind_promote"},
-        "flow":     {"generate": "flow_generate"},
-        "graph":    {"export": "graph_export", "mermaid": "graph_mermaid"},
-        "audit":    {"run": "audit"},
-        "ask":      {"run": "ask"},
-    }
+    # Look up route
+    key = (cmd, sub)
+    if key not in ROUTES:
+        # Try with no sub-command
+        key = (cmd, None)
+        if key not in ROUTES:
+            print(f"kb: unknown command '{cmd}'", file=sys.stderr)
+            if sub:
+                print(f"     sub-command '{sub}' not recognized", file=sys.stderr)
+            sys.exit(1)
+        args = []
 
-    if cmd in commands:
-        sub_cmds = commands[cmd]
-        if not args:
-            print(f"kb {cmd}: need sub-command: {', '.join(sub_cmds.keys())}")
-            sys.exit(1)
-        sub = args[0]
-        if sub in sub_cmds:
-            module_name = sub_cmds[sub]
-            try:
-                module = __import__(module_name)
-                module.main(args[1:])
-            except ImportError as e:
-                print(f"Error: module {module_name} not found ({e})")
-                print(f"Expected at: {os.path.join(SCRIPT_DIR, module_name + '.py')}")
-                sys.exit(1)
-        else:
-            print(f"kb {cmd}: unknown sub-command '{sub}'. Options: {', '.join(sub_cmds.keys())}")
-            sys.exit(1)
-    elif cmd in ("-h", "--help"):
-        print(__doc__)
-    else:
-        print(f"kb: unknown command '{cmd}'")
-        print("See: kb --help")
+    module_name = ROUTES[key]
+    try:
+        module = __import__(module_name)
+        module.main(args)
+    except ImportError as e:
+        print(f"Error: module {module_name} not found ({e})", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
