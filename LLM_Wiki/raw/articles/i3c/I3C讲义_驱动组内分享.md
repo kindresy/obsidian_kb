@@ -278,8 +278,139 @@ I3C 支持最多 11 个从设备（实际受总线电容限制）。
 
 ---
 
+---
+
+## 九、代码实现对照—Linux I3C 驱动框架
+
+基于对 Linux 内核 `drivers/i3c/` 子系统的代码分析（27 源文件，17,615 行，555 个函数）。
+
+### 9.1 整体架构
+
+```
+drivers/i3c/
+├── master.c          ─── I3C 核心框架（总线管理、DAA、IBI、CCC）
+├── device.c          ─── I3C 设备驱动 API
+├── internals.h       ─── 内部头文件
+├── Kconfig / Makefile
+└── master/
+    ├── dw-i3c-master.c      ─── Synopsys DesignWare
+    ├── svc-i3c-master.c     ─── Silvaco
+    ├── i3c-master-cdns.c    ─── Cadence（参考实现）
+    ├── adi-i3c-master.c     ─── Analog Devices
+    ├── ast2600-i3c-master.c ─── ASpeed（依赖 DesignWare）
+    ├── renesas-i3c.c        ─── Renesas
+    └── mipi-i3c-hci/        ─── MIPI HCI 标准实现
+        ├── core.c           ─── HCI 核心
+        ├── pio.c            ─── PIO 传输
+        ├── dma.c            ─── DMA 传输
+        ├── cmd_v1.c/v2.c    ─── 命令队列
+        ├── dat_v1.c         ─── 设备地址表
+        └── dct_v1.c         ─── 设备配置表
+```
+
+### 9.2 核心框架核心函数
+
+| I3C 概念 | 内核函数 | 文件:行号 | 说明 |
+|---------|---------|----------|------|
+| **总线注册** | `i3c_master_register()` | `master.c:3138` | 注册 I3C master，初始化 bus，扫描已有设备 |
+| **总线注销** | `i3c_master_unregister()` | `master.c:3159` | 注销 master，清理 IBI/设备/DAA |
+| **DAA** | `i3c_master_do_daa()` | `master.c:1851` | 动态地址分配入口 |
+| **DAA 扩展** | `i3c_master_do_daa_ext()` | `master.c:1819` | 支持 DAA 前重置地址的版本 |
+| **ENTDAA** | `i3c_master_entdaa_locked()` | `master.c:1083` | 发送 ENTDAA CCC 进入 DAA 模式 |
+| **IBI 队列** | `i3c_master_queue_ibi()` | `master.c:2785` | 将 IBI 槽排入中断处理队列 |
+| **IBI 池分配** | `i3c_generic_ibi_alloc_pool()` | `master.c:2918` | 分配通用 IBI 槽内存池 |
+| **热插拔启用** | `i3c_master_enable_hotjoin()` | `master.c:700` | 使能 Hot-Join 事件处理 |
+| **热插拔禁用** | `i3c_master_disable_hotjoin()` | `master.c:712` | 禁用 Hot-Join |
+| **CCC 发送** | `i3c_master_send_ccc_cmd_locked()` | `master.c:?` | 发送 CCC 通用命令 |
+| **ENEC/DISEC** | `i3c_master_enec_locked()` | `master.c:1151` | 使能从机事件（中断/热插入） |
+| **ENEC/DISEC** | `i3c_master_disec_locked()` | `master.c:1131` | 禁能从机事件 |
+| **DEFSLVS** | `i3c_master_defslvs_locked()` | `master.c:1242` | 定义从设备信息给第二主机 |
+| **地址分配** | `i3c_master_get_free_addr()` | `master.c:988` | 获取空闲动态地址 |
+| **设置设备信息** | `i3c_master_set_info()` | `master.c:1996` | 设置 master 设备信息和能力 |
+| **设备操作** | `i3c_device_do_xfers()` | `device.c:?` | I3C 设备数据传输 |
+| **DMA 映射** | `i3c_master_dma_map_single()` | `master.c:1916` | DMA 单缓冲区映射（一致性） |
+
+### 9.3 Master 控制器接口
+
+每个硬件驱动必须实现 `i3c_master_controller_ops`，这是硬件抽象层：
+
+| 回调 | 用途 | 参考实现（Cadence） |
+|------|------|-------------------|
+| `send_ccc_cmd` | 发送 CCC 命令 | `cdns_i3c_master_send_ccc_cmd()` |
+| `do_daa` | 执行动态地址分配 | `cdns_i3c_master_do_daa()` |
+| `priv_xfers` | 私有数据传输 | `cdns_i3c_master_priv_xfers()` |
+| `i3c_xfers` | I3C 帧传输（带 IBI 支持） | `cdns_i3c_master_i3c_xfers()` |
+| `enable_ibi` | 使能带内中断 | `cdns_i3c_master_enable_ibi()` |
+| `disable_ibi` | 禁能带内中断 | `cdns_i3c_master_disable_ibi()` |
+| `recycle_ibi_slot` | 回收 IBI 数据槽 | `cdns_i3c_master_recycle_ibi_slot()` |
+| `free_ibi` | 释放 IBI | `cdns_i3c_master_free_ibi()` |
+| `hotjoin` | 热插拔事件使能/禁能 | `dw_i3c_master_enable_hotjoin()` |
+
+### 9.4 协议概念到代码的映射
+
+#### DAA 流程代码路径
+```
+i3c_master_do_daa()
+  → i3c_master_entdaa_locked()      // 发送 ENTDAA + 广播地址 7'h7E/R
+    → master->ops->do_daa()          // 硬件层：从设备 48-bit 临时 ID 仲裁
+  → i3c_master_add_i3c_dev_locked()  // 为赢得仲裁的设备创建设备
+```
+
+#### IBI 中断流程代码路径
+```
+硬件检测 START + 地址仲裁
+  → 控制器 ISR → i3c_master_queue_ibi()  // 排入 IBI 队列
+    → i3c_master_handle_ibi()             // 内核 worker 处理
+      → 匹配设备 → 调用设备的 IBI 回调
+```
+
+#### Hot-Join 流程代码路径
+```
+从设备发送 7'h02/W
+  → i3c_master_enable_hotjoin()     // master 使能热插拔检测
+    → 检测到事件 → i3c_master_do_daa()  // 触发 DAA 分配地址
+```
+
+### 9.5 七个控制器驱动的对比
+
+| 控制器 | 文件 | 行数 | 特点 |
+|--------|------|------|------|
+| **Cadence** | `i3c-master-cdns.c` | 1,647 | 最早的参考实现，功能完整 |
+| **DesignWare** | `dw-i3c-master.c` | 1,850 | Synopsys IP，支持 HDR 模式 |
+| **Silvaco** | `svc-i3c-master.c` | 2,170 | 最复杂，双角色（master/slave） |
+| **ADI** | `adi-i3c-master.c` | 1,016 | AXI 接口，FPGA 集成友好 |
+| **Renesas** | `renesas-i3c.c` | 1,482 | 面向 RZ 系列 SoC |
+| **MIPI HCI** | `mipi-i3c-hci/core.c` | 1,078 | 遵循 MIPI HCI 标准，可移植性强 |
+| **ASpeed** | `ast2600-i3c-master.c` | 187 | 最精简，复用 DesignWare 驱动层 |
+
+MIPI HCI 驱动内部又分为：
+- **PIO 模式** (`pio.c`, 1,070 行)：CPU 直接搬运数据，延迟低
+- **DMA 模式** (`dma.c`, 905 行)：大数据量传输，CPU 开销小
+- **CMD v1/v2**：命令队列的不同版本实现
+- **DAT/DCT**：设备地址表（Device Address Table）和设备配置表（Device Configuration Table）
+
+### 9.6 从代码看 I3C 协议实现的特点
+
+1. **总线模型**：Linux I3C 子系统复用 I2C 总线框架，`i3c_bus_type` 与 `i2c_bus_type` 协同工作，通过 Kconfig `I3C_OR_I2C` 处理兼容性
+2. **地址管理**：使用位图管理动态地址池（`i3c_bus->addrs`），并通过 `i3c_master_get_free_addr()` 分配
+3. **IBI 数据槽**：采用预分配内存池模式（`i3c_generic_ibi_alloc_pool()`），避免中断路径中动态分配
+4. **同步模型**：使用读写锁 + `completion` 机制协调总线维护操作和数据传输
+5. **设备匹配**：支持 `i3c_device_id`（DCR/manufacturer/part/extra 四级匹配）和 OF 设备树匹配
+
+### 9.7 对驱动开发者的建议
+
+阅读内核 I3C 驱动的推荐顺序：
+```
+master.c           → 核心框架，理解总线模型和协议流程
+device.c           → 设备驱动 API
+i3c-master-cdns.c  → 参考实现，看 ops 如何映射硬件
+dw-i3c-master.c    → 另一完整实现，与 Cadence 对比
+mipi-i3c-hci/      → 标准实现，适合做新平台驱动的模板
+```
+
 ## 参考资料
 - MIPI I3C Basic Specification v1.1.1
 - NXP: AMF-DES-T2686 — An Introduction to MIPI I3C
+- Linux kernel `drivers/i3c/` (torvalds/linux)
 - [[i3c]] — Wiki 概念页
 - [[i3c-vs-i2c]] — I3C 与 I2C 对比详情
