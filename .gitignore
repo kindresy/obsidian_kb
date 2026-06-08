@@ -36,6 +36,9 @@ LLM_Wiki/.vector_index/
 # LLM Wiki .kb index layer (rebuildable from raw/ + wiki/)
 LLM_Wiki/.kb/
 
+# Understand Anything generated artifacts (rebuildable)
+.understand-anything/
+
 # Python cache
 __pycache__/
 *.pyc
