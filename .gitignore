@@ -5,6 +5,7 @@ Thumbs.db
 # Temp files
 *.base
 *~
+~$*
 
 # Obsidian auto-generated (page preview cache)
 .obsidian/page-preview.json
