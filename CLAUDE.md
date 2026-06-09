@@ -43,6 +43,7 @@ When performing wiki operations:
   - 子技能: understand-chat / understand-dashboard / understand-diff / understand-domain
   - 子技能: understand-explain / understand-knowledge / understand-onboard
 - **code-graph** (`.claude/skills/code-graph/SKILL.md`) — 一键分析代码仓库（本地路径或远程 URL），自动生成图谱并启动仪表盘
+- **wiki-consolidate** (`.claude/skills/wiki-consolidate/SKILL.md`) — 批量处理未入库的 raw source：审计 → ingest → compile → lint → 报告，一次性将 `raw/articles/` 中所有未处理的资料纳入 wiki 体系
 
 ## Skill 管理规则
 
