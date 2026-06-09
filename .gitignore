@@ -52,3 +52,7 @@ raw/code/**/*.cmd
 raw/code/**/Module.symvers
 raw/code/**/modules.order
 raw/code/**/.tmp_versions/
+.vite/
+
+# Nested repos in raw/code/ (each has own .git)
+LLM_Wiki/raw/code/linux-i3c/

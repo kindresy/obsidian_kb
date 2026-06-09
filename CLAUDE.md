@@ -42,6 +42,7 @@ When performing wiki operations:
 - **understand** (`.claude/skills/understand/SKILL.md`) — 多智能体代码分析管道，生成交互式知识图谱
   - 子技能: understand-chat / understand-dashboard / understand-diff / understand-domain
   - 子技能: understand-explain / understand-knowledge / understand-onboard
+- **code-graph** (`.claude/skills/code-graph/SKILL.md`) — 一键分析代码仓库（本地路径或远程 URL），自动生成图谱并启动仪表盘
 
 ## Skill 管理规则
 
