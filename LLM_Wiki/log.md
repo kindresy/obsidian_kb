@@ -88,3 +88,9 @@ Promoted query answer (v2) to wiki/linux-msi-enable.md as a first-class concept 
 
 ## [2026-06-05] lint | full wiki audit
 Deterministic: OK. Manual: 0 dead links, 0 orphans, 0 contradictions, no index drift. 2 draft stubs (mesif-protocol, powerpc). 16 empty Counter-Arguments (normal). Report: outputs/reports/2026-06-05-lint.md.
+
+## [2026-06-09] consolidate | ingest 16 sources
+Batch-ingested 16 UNKNOWN files with frontmatter: 7 I3C notes, 3 tools, 2 PCIe, 1 AVSBus, 1 I2C, 2 humanities. Ready for compile.
+
+## [2026-06-09] consolidate | compile 8 new wiki pages
+Compiled all 19 sources (7 I3C notes + 6 other domains). Created source-summaries for I3C lecture notes (i3c-lecture-notes), Linux TTY (linux-tty-notes), engineering KB plan (engineering-kb-plan), humanities (humanities-notes). Created concept pages: linux-tty, pcie-resize-bar. Updated i3c.md with expanded detail, i2c.md with EEPROM example. Rebuilt vector index: 61 pages, 324 chunks.

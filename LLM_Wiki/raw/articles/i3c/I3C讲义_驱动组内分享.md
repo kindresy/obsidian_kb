@@ -1,3 +1,11 @@
+---
+date: 2026-06-09
+source-type: article
+title: "MIPI I3C 总线协议 — 驱动开发讲义"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 # MIPI I3C 总线协议 — 驱动开发讲义
 
 > 适合驱动组内分享，面向有 I2C/SPI 基础的嵌入式工程师

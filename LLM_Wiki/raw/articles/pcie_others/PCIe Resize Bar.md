@@ -1,3 +1,11 @@
+---
+date: 2026-06-09
+source-type: article
+title: "PCIe Resizable BAR 机制"
+tags: ["pci-express", "computer-architecture"]
+compiled: false
+---
+
 
 **PCI Resizable BAR**，常简称 **ReBAR / Resize BAR**，本质是：
 

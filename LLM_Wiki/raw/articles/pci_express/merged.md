@@ -1,3 +1,11 @@
+---
+date: 2026-06-09
+source-type: book
+title: "PCI Express 体系结构导读（全书合并版）"
+tags: ["pci-express", "computer-architecture"]
+compiled: false
+---
+
 # PCI Express
 
 # 体系结构导读

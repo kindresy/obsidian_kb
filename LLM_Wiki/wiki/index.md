@@ -1,6 +1,6 @@
 # LLM Wiki Index
 
-Last updated: 2026-06-08
+Last updated: 2026-06-09
 
 ## Computer Architecture / PCI / PCIe
 - [[pci-express-体系结构导读]] — 《PCI Express 体系结构导读》全书摘要 (2026-05-28)
@@ -67,3 +67,16 @@ Last updated: 2026-06-08
 - [[codegraph]] — CodeGraph 代码知识图谱工具参考 (2026-06-08)
 - [[kb-usage]] — Engineering Knowledge Compiler 完整使用指南 (2026-06-08)
 - [[understand-anything]] — Understand Anything 多智能体代码分析管道 (2026-06-06)
+
+
+## Humanities / Philosophy
+- [[humanities-notes]] — 人文与哲思笔记（禅与摩托车维修艺术、圆觉经） (2026-06-09)
+
+## Linux / Driver
+- [[linux-tty]] — Linux TTY 子系统（三层驱动架构） (2026-06-09)
+
+## PCI Express / Advanced
+- [[pcie-resize-bar]] — PCIe Resizable BAR（ReBAR）机制 (2026-06-09)
+
+## I3C
+- [[i3c-lecture-notes]] — I3C 讲解笔记合集（7 篇） (2026-06-09)

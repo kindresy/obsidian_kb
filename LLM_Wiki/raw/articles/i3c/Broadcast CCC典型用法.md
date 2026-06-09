@@ -1,3 +1,11 @@
+---
+date: 2026-06-09
+source-type: note
+title: "I3C Broadcast CCC 典型用法与场景"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 ## Broadcast CCC 在 I3C 中的用途
 
 Broadcast CCC 的命令码范围是 **`0x00 ~ 0x7F`**（bit[7] = 0），发送给 **总线上所有 I3C Target**。所有 Target 即使不支持某条命令，也必须检查并正确识别边界。

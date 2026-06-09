@@ -289,6 +289,7 @@ LLM_Wiki/
 - [[code-knowledge-graph]] — 代码知识图标准化格式
 - [[pcie]] — Edge PCIe 驱动代码总览
 - [[linux-i3c]] — Linux I3C 子系统代码总览
+- [[engineering-kb-plan]] — 工程知识库搭建思路与实施步骤
 
 ## Counter-Arguments and Gaps
 

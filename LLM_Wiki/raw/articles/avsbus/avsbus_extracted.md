@@ -1,3 +1,11 @@
+---
+date: 2026-06-09
+source-type: article
+title: "Synopsys AVSBus Databook — Extracted Content"
+tags: ["avsbus", "hardware-ip"]
+compiled: false
+---
+
 Synopsys IP
 Adaptive Voltage Scaling Bus (AVSBus) Controller
 

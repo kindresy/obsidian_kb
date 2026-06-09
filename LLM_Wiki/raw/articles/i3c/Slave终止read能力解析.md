@@ -1,3 +1,11 @@
+---
+date: 2026-06-09
+source-type: note
+title: "I3C Slave 终止 Read 能力解析（T-bit）"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 问题：I3C与I2C的一个区别就在于slave具有终止master读数据传输的能力，具体的操作流程细节可参考5.1.2.3.4，T-bit的驱动方式永远为PP，这句话怎么理解？
 
 这句话的核心是：**I2C 读传输由 Master 决定什么时候结束；I3C SDR 读传输允许 Target 通过第 9 bit，也就是 T-bit，主动告诉 Controller：“这次读到此为止”。**
