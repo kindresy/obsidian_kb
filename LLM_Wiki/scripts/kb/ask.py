@@ -21,7 +21,7 @@ BINDING_DB = os.path.join(KB_DIR, "bindings.sqlite")
 def vector_search(query, top_k=5):
     """Search wiki pages via vector index."""
     result = subprocess.run(
-        ["python3", "search-index.py", query, "--top-k", str(top_k)],
+        [sys.executable, "search-index.py", query, "--top-k", str(top_k)],
         capture_output=True, text=True, cwd=os.path.dirname(__file__) + "/../..",
         timeout=120
     )
@@ -40,8 +40,9 @@ def codegraph_query(query, repo_name):
         return None
 
     try:
+        npx_cmd = "npx.cmd" if sys.platform == "win32" else "npx"
         result = subprocess.run(
-            ["npx.cmd", "@colbymchenry/codegraph", "query", query, "-p", code_dir, "-j"],
+            [npx_cmd, "@colbymchenry/codegraph", "query", query, "-p", code_dir, "-j"],
             capture_output=True, text=True, timeout=30
         )
         if result.returncode == 0 and result.stdout.strip():
