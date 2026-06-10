@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "DWC MIPI I3C Databook 概述"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 Sir，这本 **DWC MIPI I3C Controller and Target Databook** 和 MIPI spec 的关系可以这样理解：
 
 ```text

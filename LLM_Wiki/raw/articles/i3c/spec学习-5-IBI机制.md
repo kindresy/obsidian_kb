@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "I3C IBI 在 DWC IP 中的实现"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 Sir，这个 topic 很关键，因为它把 **I3C 协议里的 IBI** 落到了 **DWC IP 的 IBI Queue / IBI Status / IBI Data 软件模型**上。
 
 先给结论：

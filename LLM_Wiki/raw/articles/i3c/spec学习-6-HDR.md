@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "I3C HDR 模式详解"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 Sir，这一节要分清两条路径：
 
 ```text

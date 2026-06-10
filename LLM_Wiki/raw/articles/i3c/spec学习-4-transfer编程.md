@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "I3C Transfer 编程模型"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 我们接着后面的话题：
 普通 SDR private read/write 怎么下 command？
 Transfer Command / Transfer Argument / Short Data Argument 分别怎么用？

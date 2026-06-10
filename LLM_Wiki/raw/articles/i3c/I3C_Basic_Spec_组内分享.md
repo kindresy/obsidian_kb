@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "MIPI I3C Basic v1.1.1 组内分享"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 # MIPI I3C Basic v1.1.1 组内分享
 
 > 面向嵌入式、OS、固件、驱动开发同学。目标不是逐条翻译规范，而是把 I3C Basic 的协议模型、驱动实现边界、bring-up 调试重点讲清楚。

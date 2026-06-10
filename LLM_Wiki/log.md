@@ -94,3 +94,6 @@ Batch-ingested 16 UNKNOWN files with frontmatter: 7 I3C notes, 3 tools, 2 PCIe, 
 
 ## [2026-06-09] consolidate | compile 8 new wiki pages
 Compiled all 19 sources (7 I3C notes + 6 other domains). Created source-summaries for I3C lecture notes (i3c-lecture-notes), Linux TTY (linux-tty-notes), engineering KB plan (engineering-kb-plan), humanities (humanities-notes). Created concept pages: linux-tty, pcie-resize-bar. Updated i3c.md with expanded detail, i2c.md with EEPROM example. Rebuilt vector index: 61 pages, 324 chunks.
+
+## [2026-06-10] consolidate | ingest 8 + compile 2 zhihu articles
+Ingested 8 I3C spec learning notes (frontmatter). Created wiki pages for 2 zhihu articles: zhihu-pcie-link-up (PCIe Link Up delay), zhihu-linux-dma-api + linux-dma-api (Linux DMA API guide). Backlinked pcie-link-training → zhihu-pcie-link-up. Rebuilt vector index: 64 pages, 334 chunks.

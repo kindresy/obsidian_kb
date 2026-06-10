@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "DWC I3C Controller 寄存器配置流程"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 Sir，下面我按 **DWC_mipi_i3c_v111_basic Non-HCI Controller mode** 来讲实际寄存器配置 flow。先说一个边界：这本 Databook 从 1.03a 起把完整 **Register Descriptions / offset / reset value / bit 定义**移到单独的 **Reference Manual**，所以这里我会讲 **寄存器级配置顺序、关键寄存器/字段、命令队列数据结构**；具体 offset 要以你手上的 Reference Manual 或 coreConsultant 生成的 header 为准。
 
 # 1. 总体寄存器 flow

@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "DWC I3C Controller 初始化顺序"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 好，Sir。我们就先攻克 **DWC I3C Controller 初始化顺序**。这一节的目标不是背寄存器，而是建立一条清晰主线：
 
 ```text

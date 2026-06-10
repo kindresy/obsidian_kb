@@ -1,6 +1,6 @@
 # LLM Wiki Index
 
-Last updated: 2026-06-09
+Last updated: 2026-06-10
 
 ## Computer Architecture / PCI / PCIe
 - [[pci-express-体系结构导读]] — 《PCI Express 体系结构导读》全书摘要 (2026-05-28)
@@ -77,6 +77,11 @@ Last updated: 2026-06-09
 
 ## PCI Express / Advanced
 - [[pcie-resize-bar]] — PCIe Resizable BAR（ReBAR）机制 (2026-06-09)
+- [[zhihu-pcie-link-up]] — Linux 启动 5 秒后才 Link Up，PCIe 为什么没有超时？ (2026-06-10)
+
+## Linux / DMA
+- [[linux-dma-api]] — Linux DMA API 内核驱动接口 (2026-06-10)
+- [[zhihu-linux-dma-api]] — Linux DMA API 使用指导（知乎译文） (2026-06-10)
 
 ## I3C
 - [[i3c-lecture-notes]] — I3C 讲解笔记合集（7 篇） (2026-06-09)

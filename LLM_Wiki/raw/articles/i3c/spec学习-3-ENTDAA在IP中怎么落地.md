@@ -1,3 +1,11 @@
+---
+date: 2026-06-10
+source-type: note
+title: "ENTDAA 在 DWC IP 中的实现"
+tags: ["i3c", "bus-protocol"]
+compiled: false
+---
+
 ENTDAA 在 DWC IP 中怎么落地？
 DAT 预填什么？DCT 捕获什么？Response Queue 怎么判断成功？
 
