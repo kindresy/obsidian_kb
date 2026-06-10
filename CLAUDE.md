@@ -63,3 +63,7 @@ When performing wiki operations:
 - The `AGENTS.md` file is for Codex working on a baremetal project — do not modify it.
 - Use `[[wikilinks]]` for internal cross-references.
 - Use Dataview-compatible YAML frontmatter for metadata.
+
+## Cross-Platform Compatibility
+- **All scripts (Python, Bash, etc.) must be Windows/Linux compatible** — never hardcode `npx.cmd`, `python3` (use `sys.executable`), or Windows-only paths. Use `sys.platform == "win32"` checks where platform-specific commands are unavoidable.
+- This vault is developed on Windows (Obsidian) and may be deployed on Linux. Scripts must work on both without modification.
